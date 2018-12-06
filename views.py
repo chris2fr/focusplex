@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-from .models import Who, WhatEtc
+from .models import Who, What
 
 # Create your views here.
 
@@ -9,5 +9,5 @@ def index(renderer):
 def who(renderer, who_id):
     return render(request, 'why/who.html', {})
 
-def what(renderer, whatetc_id):
-    return render(request, 'why/whatetc.html', {})
+def what(renderer, what_id):
+    return render(request, 'why/what.html', {})

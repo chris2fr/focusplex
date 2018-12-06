@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class WhyoatConfig(AppConfig):
+class WhyConfig(AppConfig):
     name = 'why'
