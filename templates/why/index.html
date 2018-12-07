@@ -1,1 +1,52 @@
-Index
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Who, What, Etc.</title>
+  <meta name="description" content="Who? What! Etc.">
+  <meta name="author" content="Chris Mann <chris@mann.fr>">
+
+</head>
+
+<body>
+
+<a href="/admin/">Log{in/out}</a> | <a href="/admin/why/who/">Contacts</a>
+
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>To</th>
+        <th>Why</th>
+        <TH>Do</TH>
+        <TH>What</TH>
+    </tr>
+    <!-- <TH>Where</TH><TH>When</TH><TH>Whom</TH><TH>How</TH><TH>How Much</TH><TH>How Long</TH></tr>\n" -->
+    {% for what in whats %}
+    <tr>
+        <td>{{what.result.id}}.{{what.id}}</td>
+        <td><a target="_new" href="/admin/why/what/add/?result={{what.result.id}}">To</a></td>
+        <td><a target="_new" href="/admin/why/what/{{what.result.id}}/change/">{{what.result}}</a>,</td>
+        <td align="center"><a target="_new" href="/admin/why/what/add/?result={{what.id}}">do</a></TD>
+        <TD><a target="_new" href="/admin/why/what/{{what.id}}/change/">{{what}}</a>.</td>
+            <!-- <td></td><td></td><td></td><td></td><td></td><td></td>-->
+    </tr> 
+    {% endfor %}
+    <tr>
+        <form action="/" method="post">
+            {% csrf_token %}
+    <tr>
+        <td>{{what.result.id}}.{{what.id}}</td>
+        <td>To</td>
+        <td>{{ what_form.result }},</td>
+        <td align="center">do</TD>
+        <TD>{{what_form.action}}.</td>
+            <!-- <td></td><td></td><td></td><td></td><td></td><td></td>-->
+    </tr> 
+    </form>
+    </tr>
+</table>
+
+</body>
+</html>
