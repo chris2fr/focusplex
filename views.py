@@ -7,12 +7,11 @@ from .forms import WhatForm
 
 def index(request):
     whats = ()
-    what_form = ""
+    what_form = WhatForm()
     zoom_id = request.GET.get('zoom')
     
     if request.user.is_authenticated:
         whats = What.objects.order_by('result__id').filter(created_by=request.user)
-        what_form = WhatForm()
     else:
         whats = What.objects.order_by('result__id').filter(public=True)
     if(zoom_id):
@@ -35,14 +34,13 @@ def index(request):
             result = What.objects.get(pk=request.POST.get("result"))
             what.result = result
         what.save()
+        
+    if request.user.is_authenticated:
         what_form.fields['result'].choices = (('','[Top]'),)
         for what in whats:
             what_form.fields['result'].choices.append((str(what.id),what.action))
-            # form_whats = forms.ModelChoiceField(queryset=whats, empty_label=" ---- ")
-        # ugliness below
-        if request.method == 'POST':
-            what_form.fields['result'].initial = request.POST.get("result")
-            what_form.fields['result'].value = request.POST.get("result")
+        what_form.fields['result'].initial = request.POST.get("result")
+        what_form.fields['result'].value = request.POST.get("result")
     
     return render(request, 'why/index.html', {'whats':whats,'what_form':what_form})
 
