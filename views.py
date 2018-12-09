@@ -27,6 +27,9 @@ def index(request):
         for what in whats:
             what_form.fields['result'].choices.append((str(what.id),what.action))
             # form_whats = forms.ModelChoiceField(queryset=whats, empty_label=" ---- ")
+        # ugliness below
+        if request.method == 'POST':
+            what_form.fields['result'].initial = request.POST.get("result")
     else:
         whats = What.objects.order_by('result__id').filter(public=True)
     
