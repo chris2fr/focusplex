@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-# from django.db.models import Q
+from django.db.models import Q # for joining multiple queries
 from .models import Who, What
 from .forms import WhatForm
 
@@ -8,8 +8,10 @@ from .forms import WhatForm
 def index(request):
     whats = ()
     what_form = ""
+    zoom_id = request.GET.get('zoom')
     if request.user.is_authenticated:
         whats = What.objects.order_by('result__id').filter(created_by=request.user)
+        
         what_form = WhatForm()
         if request.method == 'POST':
             # create a form instance and populate it with data from the request:
@@ -33,7 +35,13 @@ def index(request):
             what_form.fields['result'].value = request.POST.get("result")
             
     else:
-        whats = What.objects.order_by('result__id').filter(public=True)
+        query = Q(public=True)
+        if(zoom_id):
+            query = query & ( Q(id=zoom_id) | Q(result__id=zoom_id) )
+        whats = What.objects.order_by('result__id').filter(query)
+        
+    if(zoom_id):
+        whats = whats.filter(Q(result__id=zoom_id) |  Q(id=zoom_id) )
     
     return render(request, 'why/index.html', {'whats':whats,'what_form':what_form})
 
