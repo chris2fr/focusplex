@@ -30,6 +30,8 @@ def index(request):
         # ugliness below
         if request.method == 'POST':
             what_form.fields['result'].initial = request.POST.get("result")
+            what_form.fields['result'].value = request.POST.get("result")
+            
     else:
         whats = What.objects.order_by('result__id').filter(public=True)
     
