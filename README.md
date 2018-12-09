@@ -14,11 +14,11 @@ The simplicity is beautiful. There is no tree view actually, just a table view. 
 
 ## Idea for the To Do Die
 
-A TODO die would have six sides, like any die:
+A TODO die would have six sides, like any die, inspired by the symbols above the numbers 1 2 3 4 5 6 on the US keyboard :
 
 1. ! - Why (alternatively ?)
 2. @ - Who
-3. # - What
+3. &#35; (hashtag) - What
 4. $ - How
 5. % - When 
 6. ^ - Where
