@@ -25,6 +25,16 @@
         <TH>X</TH>
     </tr>
     <!-- <TH>Where</TH><TH>When</TH><TH>Whom</TH><TH>How</TH><TH>How Much</TH><TH>How Long</TH></tr>\n" -->
+    <tr>
+        <td></td>
+        <td>To</td>
+        <td>,</td>
+        <td align="center">do</TD>
+        <TD>.</td>
+        <TD><a target="_new" href="/admin/why/what/add">+</A></TD>
+        <TD></td>
+            <!-- <td></td><td></td><td></td><td></td><td></td><td></td>-->
+    </tr> 
     {% for what in whats %}
     <tr>
         <td>{{what.result.id}}.{{what.id}}</td>
@@ -32,8 +42,8 @@
         <td><a target="_new" href="/admin/why/what/{{what.result.id}}/change/">{{what.result.action}}</a>,</td>
         <td align="center">do</TD>
         <TD><a target="_new" href="/admin/why/what/{{what.id}}/change/">{{what}}</a>.</td>
-        <TD><a target="_new" href="/admin/why/what/add/?result={{what.result.id}}">+</A></TD>
-        <TD><a target="_new" href="/admin/why/what/{{what.id}}/delete/">X</a>.</td>
+        <TD><a target="_new" href="/admin/why/what/add/?result={{what.id}}">+</A></TD>
+        <TD><a target="_new" href="/admin/why/what/{{what.id}}/delete/">X</a></td>
             <!-- <td></td><td></td><td></td><td></td><td></td><td></td>-->
     </tr> 
     {% endfor %}
