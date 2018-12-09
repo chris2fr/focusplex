@@ -46,7 +46,9 @@ def index(request):
             what_form.fields['result'].initial = request.POST.get("result")
             what_form.fields['result'].value = request.POST.get("result")
     
-    return render(request, 'why/index.html', {'whats':whats,'what_form':what_form,'zoom_id':zoom_id})
+    if (not zoom_id):
+        zoom_id = ''
+    return render(request, 'why/index.html', {'whats':whats,'what_form':what_form,'zoom_id':str(zoom_id)})
 
 def who(request, who_id):
     return render(request, 'why/who.html', {})
