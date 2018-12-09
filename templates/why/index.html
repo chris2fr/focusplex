@@ -21,15 +21,19 @@
         <th>Why</th>
         <TH>Do</TH>
         <TH>What</TH>
+        <TH>+</TH>
+        <TH>X</TH>
     </tr>
     <!-- <TH>Where</TH><TH>When</TH><TH>Whom</TH><TH>How</TH><TH>How Much</TH><TH>How Long</TH></tr>\n" -->
     {% for what in whats %}
     <tr>
         <td>{{what.result.id}}.{{what.id}}</td>
-        <td><a target="_new" href="/admin/why/what/add/?result={{what.result.id}}">To</a></td>
+        <td>To</td>
         <td><a target="_new" href="/admin/why/what/{{what.result.id}}/change/">{{what.result.action}}</a>,</td>
-        <td align="center"><a target="_new" href="/admin/why/what/add/?result={{what.id}}">do</a></TD>
+        <td align="center">do</TD>
         <TD><a target="_new" href="/admin/why/what/{{what.id}}/change/">{{what}}</a>.</td>
+        <TD><a target="_new" href="/admin/why/what/add/?result={{what.result.id}}">+</A></TD>
+        <TD><a target="_new" href="/admin/why/what/{{what.id}}/delete/">X</a>.</td>
             <!-- <td></td><td></td><td></td><td></td><td></td><td></td>-->
     </tr> 
     {% endfor %}
