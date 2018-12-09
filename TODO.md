@@ -1,6 +1,36 @@
 # Why ToDo
 
-## 
+## Import and Export Whats
+
+It would be nice to be able to export branches, trees and leaves of whats and to import them too.
+
+## Unit Tests and Documentation
+
+Code elegantly.
+
+## Confirm the Who User Proxy Object
+
+The data model considers the "Who" table to be, among other things, a proxy for users. We should make sure that this works correctly insomuch as the What object is linked to the Who object. Linking the What object to a application user could be inelegant.
+
+## Review Ordering Options
+
+Perhaps consider alphabetical order from within the lists, still having the top todos first. 
+
+## Detach from Admin Pages 
+
+At the current time every user needs to be a super-user with admin pages that give access to all todos in the website. The change would be to not rely on these outside admin pages for management of the todo lists.
+
+## Integrate In-Place Editing   
+
+The idea is to click on a line and make it directly editable.
+
+## Have a More Appealing / Usable Layout
+
+I really haven't paid any attention to the layout of the application. It would be nice to make it prettier and perhaps more ergonomic. 
+
+## Drag and Drop
+
+It would be useful to move and rearrange the todos by drag and drop. Any todo can be filed under an other why.
 
 ## Cascaded Sharing
 
