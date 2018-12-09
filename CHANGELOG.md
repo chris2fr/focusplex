@@ -6,4 +6,5 @@
 * Submitting initial source
 * Index view of TO WHY DO WHAT
 * Uses admin interface for data manipulation
-* Extra form at the bottom for adding items 
+* Extra form at the bottom for adding items
+* Zoom feature on index page 
