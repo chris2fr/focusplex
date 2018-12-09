@@ -39,10 +39,14 @@ def index(request):
         what_form.fields['result'].choices = (('','[Top]'),)
         for what in whats:
             what_form.fields['result'].choices.append((str(what.id),what.action))
-        what_form.fields['result'].initial = request.POST.get("result")
-        what_form.fields['result'].value = request.POST.get("result")
+        if (zoom_id): # Very silly repetition
+            what_form.fields['result'].initial = zoom_id
+            what_form.fields['result'].value = zoom_id
+        else:
+            what_form.fields['result'].initial = request.POST.get("result")
+            what_form.fields['result'].value = request.POST.get("result")
     
-    return render(request, 'why/index.html', {'whats':whats,'what_form':what_form})
+    return render(request, 'why/index.html', {'whats':whats,'what_form':what_form,'zoom_id':zoom_id})
 
 def who(request, who_id):
     return render(request, 'why/who.html', {})

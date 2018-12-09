@@ -43,7 +43,7 @@
         <td>To</td>
         <td><a target="_new" href="/admin/why/what/{{what.result.id}}/change/">{{what.result.action}}</a>,</td>
         <td align="center">do</TD>
-        <TD><a target="_new" href="/admin/why/what/{{what.id}}/change/">{{what}}</a>.</td>
+        <TD><a target="_new" href="/admin/why/what/{{what.id}}/change/">{{what.action}}</a>.</td>
         <TD><A href="/?zoom={{what.id}}">&gt;</A></TD>
         <TD><a target="_new" href="/admin/why/what/add/?result={{what.id}}">+</A></TD>
         <TD><a target="_new" href="/admin/why/what/{{what.id}}/delete/">X</a></td>
@@ -51,7 +51,7 @@
     </tr> 
     {% endfor %}
     <tr>
-        <form action="/" method="post">
+        <form action="/?zoom={{zoom_id}}" method="post">
             {% csrf_token %}
     <tr>
         <td>{{what.result.id}}.{{what.id}}</td>
