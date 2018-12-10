@@ -6,20 +6,32 @@ from .forms import WhatForm
 # Create your views here.
 
 def index(request):
-    whats = ()
+    whats = []
     what_form = WhatForm()
-    zoom_id = request.GET.get('zoom')
+    zoom_id = request.GET.get('zoom_id')
     
     if request.user.is_authenticated:
-        whats = What.objects.order_by('result__id').filter(created_by=request.user)
+        filter = Q(created_by=request.user)
     else:
-        whats = What.objects.order_by('result__id').filter(public=True)
-    if(zoom_id):
-        whati = What.objects.get(pk=zoom_id)
-        if whati.result:
-            whats = whats.filter(Q(id=zoom_id) | Q(result__id=zoom_id) | Q(id=whati.result.id))
-        else: 
-            whats = whats.filter(Q(id=zoom_id) | Q(result__id=zoom_id) )
+        filter = Q(public=True)
+        
+    if (not zoom_id):
+        for what in What.objects.order_by('action').filter(filter).filter(result__isnull=True).all():
+            whats.append(what)
+    else:
+        whats.append(What.objects.filter(filter).get(pk=zoom_id))
+        for what in What.objects.filter(filter).filter(result__id=zoom_id).all(): # Down
+             whats.append(what) 
+        # Now up
+        what = What.objects.get(pk=zoom_id)
+        while(what.result): # up
+            whats.insert(0,What.objects.filter(filter).get(pk=what.result.id))
+            what = what.result
+    
+    #if whati.result:
+    #    whats = whats.filter(Q(id=zoom_id) | Q(result__id=zoom_id) | Q(id=whati.result.id))
+    #else: 
+    #    whats = whats.filter(Q(id=zoom_id) | Q(result__id=zoom_id) )
 
        
     if request.user.is_authenticated and request.method == 'POST':
@@ -47,8 +59,8 @@ def index(request):
             what_form.fields['result'].value = request.POST.get("result")
     
     if (not zoom_id):
-        zoom_id = ''
-    return render(request, 'why/index.html', {'whats':whats,'what_form':what_form,'zoom_id':str(zoom_id)})
+        zoom_id = 0
+    return render(request, 'why/index.html', {'whats':whats,'what_form':what_form,'zoom_id':int(zoom_id)})
 
 def who(request, who_id):
     return render(request, 'why/who.html', {})

@@ -39,19 +39,19 @@
     </tr> 
     {% for what in whats %}
     <tr>
-        <td>{{what.result.id}}.{{what.id}}</td>
+        <td>{{what.result.id}}.{{what.id}}.{{zoom_id}}</td>
         <td>To</td>
         <td><a href="/admin/why/what/{{what.result.id}}/change/">{{what.result.action}}</a>,</td>
         <td align="center">do</TD>
-        <TD><a href="/admin/why/what/{{what.id}}/change/">{{what.action}}</a>.</td>
-        <TD><A href="/?zoom={{what.id}}">&gt;</A></TD>
+        <TD>{% if what.id == zoom_id %}<b>{% endif %}<a href="/admin/why/what/{{what.id}}/change/">{{what.action}}</a>.{% if what.id == zoom_id %}</b>{% endif %}</td>
+        <TD><A href="/?zoom_id={{what.id}}">&gt;</A></TD>
         <TD><a href="/admin/why/what/add/?result={{what.id}}">+</A></TD>
         <TD><a href="/admin/why/what/{{what.id}}/delete/">X</a></td>
             <!-- <td></td><td></td><td></td><td></td><td></td><td></td>-->
     </tr> 
     {% endfor %}
     <tr>
-        <form action="/?zoom={{zoom_id}}" method="post">
+        <form action="/?zoom_id={{zoom_id}}" method="post">
             {% csrf_token %}
     <tr>
         <td>{{what.result.id}}.{{what.id}}</td>
