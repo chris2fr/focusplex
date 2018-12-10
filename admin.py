@@ -31,7 +31,6 @@ class WhatAdmin(admin.ModelAdmin):
     def response_add(self, request, obj, post_url_continue=None):
         """Redirect to root on add"""
         return self.redirect_zoom(obj.result.id)
-        
 
     def response_change(self, request, obj):
         """Redirect to root on change"""
