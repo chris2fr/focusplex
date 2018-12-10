@@ -61,7 +61,7 @@ WHAT could be a todo or a text field
 
 HOW could be money, a howto document, a description (text area/document)
 
-WHEN could be a point in time, a duration in time, a duration, a set of work sessions (past and to come), and a time of day
+WHEN could be a point in time, a duration in time, a duration, a set of work sessions (past and to come), a time of day or even a semaphore waiting for input from a third part.
 
 WHERE could be a URL, an address, geo coordonates, a concept, etc
 
