@@ -1,5 +1,13 @@
 # Why ToDo
 
+## Link to Contact Applications
+
+The who criteriao around a task my reference entities from external calendar applications. The link could even be one-to-many, possibly.
+
+## Link with Calendar Apps
+
+Any what or why can include a calendar apointment with a ver prefixed to it.
+
 ## Bulk Modification of Results
 
 A user can modify multiple todos at once to reclassify them under another taskwhy. The current process is two-step, line by line.
