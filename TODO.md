@@ -53,16 +53,16 @@ A TODO die would have six sides, like any die, inspired by the symbols above the
 
 These could be extra fields for each todo. Each definition of a field could actually be variable.
 
-WHY could be a todo or field of characters.
+WHY ! could be a todo or field of characters.
 
-WHO could be a distinct object, either a person, an abstract concept or an organization, or a link in an LDAP directory, or a user account
+WHO @ could be a distinct object, either a person, an abstract concept or an organization, or a link in an LDAP directory, or a user account
 
-WHAT could be a todo or a text field
+WHAT # could be a todo or a text field
 
-HOW could be money, a howto document, a description (text area/document)
+HOW $ could be money, a howto document, a description (text area/document)
 
-WHEN could be a point in time, a duration in time, a duration, a set of work sessions (past and to come), a time of day or even a semaphore waiting for input from a third part.
+WHEN % could be a point in time, a duration in time, a duration, a set of work sessions (past and to come), a time of day or even a semaphore waiting for input from a third part.
 
-WHERE could be a URL, an address, geo coordonates, a concept, etc
+WHERE ^ could be a URL, an address, geo coordonates, a concept, etc
 
 This chapter could be relegated to a TODO.md file.
