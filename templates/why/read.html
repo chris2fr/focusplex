@@ -1,0 +1,77 @@
+{% extends "why/boilerplate.html" %}
+
+{% block title %}My amazing blog{% endblock %}
+
+{% block content %}
+<form action="/update/{{zoom_id}}" method="post">
+{% csrf_token %}
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>To</th>
+        <th>Why</th>
+        <TH>Do</TH>
+        <TH>What</TH>
+        <TH>X</TH>
+    </tr>
+    <!-- <TH>Where</TH><TH>When</TH><TH>Whom</TH><TH>How</TH><TH>How Much</TH><TH>How Long</TH></tr>\n" -->
+    
+    <tr>
+        <td></td>
+        <td>To</td>
+        <td>,</td>
+        <td align="center">do</TD>
+        <TD><a href="/">[Top]</a>.</td>
+        <TD></td>
+            <!-- <td></td><td></td><td></td><td></td><td></td><td></td>-->
+    </tr> 
+    {% for what in what_ups %}
+    <tr>
+        <td>{{what.result.id}}.{{what.id}}</td>
+        <td>To</td>
+        <td><a href="/read/{{what.result.id}}">{{what.result.action}}</a>,</td>
+        <td align="center">do</TD>
+        <TD><a href="/read/{{what.id}}">{{ what.action }}</a>.</td>
+        <TD><a href="/delete/{{what.id}}">X</a></td>
+            <!-- <td></td><td></td><td></td><td></td><td></td><td></td>-->
+    </tr> 
+    {% endfor %}
+    {% if zoom_id > 0 %}
+    <tr>
+        <td>{{what_now.result.id}}.{{what_now.id}}</td>
+        <td>To</td>
+        <td>{{ what_now_form.result }},</td>
+        <td align="center">do</TD>
+        <td>{{ what_now_form.action }}.</td>
+        <TD><a href="/delete/{{what_now.id}}/delete/">X</a></td>
+        <!-- <td></td><td></td><td></td><td></td><td></td><td></td>-->
+    </tr> 
+    {% endif %}
+    {% for what in what_downs %}
+    <tr>
+        <td>{{what.result.id}}.{{what.id}}</td>
+        <td>To</td>
+        <td><a href="/read/{{what.result.id}}">{{what.result.action}}</a>,</td>
+        <td align="center">do</TD>
+        <TD><a href="/read/{{what.id}}">{{what.action}}</a>.</td>
+        <TD><a href="/delete/{{what.id}}">X</a></td>
+            <!-- <td></td><td></td><td></td><td></td><td></td><td></td>-->
+    </tr> 
+    {% endfor %}
+</table>
+</form>
+<form action="/create/" method="post">
+        {% csrf_token %}
+<table border="1">
+    <tr>
+        <td>{{what_new.result.id}}.{{what.id}}</td>
+        <td>To</td>
+        <td>{{ what_new_form.result }},</td>
+        <td align="center">do</TD>
+        <td>{{what_new_form.action}}.</td>
+        <!-- <td></td><td></td><td></td><td></td><td></td><td></td>-->
+    </tr>
+</table>
+</form>
+{% endblock %}
+

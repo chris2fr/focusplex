@@ -1,0 +1,26 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="{% static "why/styles.css" %}">
+  <title>{% block title %}T'ask?{% endblock %}</title>
+  <meta name="description" content="Who? What! Etc.">
+  <meta name="author" content="Chris Mann <chris@mann.fr>">
+
+</head>
+
+<body>
+<div id='topmenu'>
+<ul>
+    <li><a href="/admin/login/?next=/">Log{in/out}</a></li>
+    <li><a href="/admin/why/who/">Contacts</a></li>
+</ul>
+</div>
+
+<div id="content">
+{% block content %}Manage why you do do what you do do.{% endblock %}
+</div>
+
+</body>
+</html>
