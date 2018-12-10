@@ -1,5 +1,9 @@
 # Why ToDo
 
+## Journal Activities for Historical Nostalgia
+
+The actions of tasks done can be consulted later in life to appreciate the beauty of things. This can be a journaling tool too.
+
 ## Link to Contact Applications
 
 The who criteriao around a task my reference entities from external calendar applications. The link could even be one-to-many, possibly.
