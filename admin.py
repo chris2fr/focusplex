@@ -34,7 +34,8 @@ class WhatAdmin(admin.ModelAdmin):
 
     def response_change(self, request, obj):
         """Redirect to root on change"""
-        return self.redirect_zoom(obj.result.id)
+        # return self.redirect_zoom(obj.result.id)
+        return self.redirect_zoom('/')
 
     def response_delete(self, request, obj, post_url_continue=None):
         """Redirect to root on delete"""
