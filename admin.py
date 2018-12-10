@@ -21,7 +21,7 @@ class WhatAdmin(admin.ModelAdmin):
         
     def redirect_zoom(self, zoom_id):
         """A private method really"""
-        if(zoom_id>0):
+        if(int(zoom_id) > 0):
             id = str(zoom_id)
             redir = "/?zoom=" + id
         else:
@@ -35,7 +35,7 @@ class WhatAdmin(admin.ModelAdmin):
     def response_change(self, request, obj):
         """Redirect to root on change"""
         # return self.redirect_zoom(obj.result.id)
-        return self.redirect_zoom('/')
+        return redirect('/')
 
     def response_delete(self, request, obj, post_url_continue=None):
         """Redirect to root on delete"""
