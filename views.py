@@ -98,12 +98,12 @@ def read(request, id):
             what_ups.insert(0,What.objects.filter(filter).get(pk=what.result.id))
             what = what.result
         # New up sides
-        what = What.objects.get(pk=zoom_id)
+        what = What.objects.filter(filter).get(pk=zoom_id)
         if (what.result):
-            for whati in What.objects.order_by('action').filter(result__id=what.result.id).all():
+            for whati in What.objects.order_by('action').filter(filter).filter(result__id=what.result.id).all():
                 what_up_sides.append(whati)
         else:
-            for whati in What.objects.order_by('action').filter(result__id=None).all():
+            for whati in What.objects.order_by('action').filter(filter).filter(result__id=None).all():
                 what_up_sides.append(whati)
             
             
