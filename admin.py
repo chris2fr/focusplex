@@ -20,6 +20,7 @@ class WhatAdmin(admin.ModelAdmin):
         
     def response_add(self, request, obj, post_url_continue=None):
         """Redirect to root on add"""
+        # TODO add ?zoom=[zoom_id]
         return redirect('/')
 
     def response_change(self, request, obj):
