@@ -1,12 +1,16 @@
 # Why ToDo
 
+## Bulk Modification of Results
+
+A user can modify multiple todos at once to reclassify them under another taskwhy. The current process is two-step, line by line.
+
 ## Import and Export Whats
 
 It would be nice to be able to export branches, trees and leaves of whats and to import them too.
 
 ## Unit Tests and Documentation
 
-Code elegantly.
+Code elegantly and according to good practices.
 
 ## Confirm the Who User Proxy Object
 
