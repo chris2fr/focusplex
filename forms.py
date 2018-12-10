@@ -4,10 +4,12 @@ from .models import What
 class WhatForm(forms.Form):
     result = forms.ChoiceField(label='to',required=False)
     action = forms.CharField(label="do",max_length=255)
+    # id = forms.HiddenField()
     
     def __init__(self, *args, **kwargs):
         super(WhatForm, self).__init__(*args, **kwargs)
         self.fields['action'].widget.attrs.update({'autofocus': 'autofocus'})
+        self.fields['result'].choices.append((0,'top'))
     
     #def __init__ (self, request):
     #    if request.user.is_authenticated:
