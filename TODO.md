@@ -24,13 +24,19 @@ Code elegantly and according to good practices.
 
 The data model considers the "Who" table to be, among other things, a proxy for users. We should make sure that this works correctly insomuch as the What object is linked to the Who object. Linking the What object to a application user could be inelegant.
 
+I think the whats are currently assigned directly to a Django user rather than going through the Who object as a proxy. This seems inelegant to me.
+
 ## Review Ordering Options
 
-Perhaps consider alphabetical order from within the lists, still having the top todos first. 
+Perhaps consider alphabetical order from within the lists, still having the top todos first. It may be better to do a recursive lookup on taskwhys under taskwhys ratjer than relyting on result__id which gives a strange behavior.
 
 ## Detach from Admin Pages 
 
 At the current time every user needs to be a super-user with admin pages that give access to all todos in the website. The change would be to not rely on these outside admin pages for management of the todo lists.
+
+In the interim, it is possible to add zoom in the redirect after modifications on the admin pages. That would bring us back to a filtered list.
+
+A amjor disadvantage to the using of the admin pages is that the candidate what.result.id is not filtered to only the whats that belong to the current who of the current user.
 
 ## Integrate In-Place Editing   
 
