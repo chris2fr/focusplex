@@ -10,12 +10,27 @@ def index(request):
     what_form = WhatForm()
     zoom_id = request.GET.get('zoom_id')
     
+    # Handle POST Add first
+    
+    if request.user.is_authenticated and request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        # what_form = WhatForm(request.POST)
+        # check whether it's valid:
+        #if what_form.is_valid():
+        # process the data in form.cleaned_data as required
+        action = request.POST.get("action")
+        what = What.objects.create(action=action,created_by=request.user)
+        if request.POST.get("result"):
+            result = What.objects.get(pk=request.POST.get("result"))
+            what.result = result
+        what.save()
+    
     if request.user.is_authenticated:
         filter = Q(created_by=request.user)
     else:
         filter = Q(public=True)
         
-    if (not zoom_id):
+    if (not zoom_id or int(zoom_id) == 0):
         for what in What.objects.order_by('action').filter(filter).filter(result__isnull=True).all():
             whats.append(what)
     else:
@@ -32,21 +47,7 @@ def index(request):
     #    whats = whats.filter(Q(id=zoom_id) | Q(result__id=zoom_id) | Q(id=whati.result.id))
     #else: 
     #    whats = whats.filter(Q(id=zoom_id) | Q(result__id=zoom_id) )
-
-       
-    if request.user.is_authenticated and request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        # what_form = WhatForm(request.POST)
-        # check whether it's valid:
-        #if what_form.is_valid():
-        # process the data in form.cleaned_data as required
-        action = request.POST.get("action")
-        what = What.objects.create(action=action,created_by=request.user)
-        if request.POST.get("result"):
-            result = What.objects.get(pk=request.POST.get("result"))
-            what.result = result
-        what.save()
-        
+    
     if request.user.is_authenticated:
         what_form.fields['result'].choices = (('','[Top]'),)
         for what in whats:
@@ -57,6 +58,7 @@ def index(request):
         else:
             what_form.fields['result'].initial = request.POST.get("result")
             what_form.fields['result'].value = request.POST.get("result")
+ 
     
     if (not zoom_id):
         zoom_id = 0
