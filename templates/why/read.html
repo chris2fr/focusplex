@@ -10,8 +10,11 @@
 
 
 
-        
-    In order to <strong>{{ what_now_form.action.value }}</strong>,
+    To
+    {% if what_now.result.id %} 
+    <a href="/read/{{what_now.result.id}}">{{what_now.result.action}}</a> 
+    {% endif %} 
+    <br/>do <strong>{{ what_now_form.action.value }}</strong>:
     <UL> 
     {% for whatd in what_downs %} 
         <li>do <a href="/read/{{whatd.id}}">{{whatd.action}}</a>. 
@@ -47,7 +50,9 @@
     </UL> 
 {% endif %} 
 
+{% if not user.is_authenticated %}
 <P>Demo user 'demo' password 'showmetaskwhy'. For an account, write chris@mann.fr. </P>
+{% endif%}
 
 {% endblock %}
 
