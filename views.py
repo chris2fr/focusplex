@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.db.models import Q # for joining multiple queries
 from .models import Who, What
 from .forms import WhatForm
+import django.forms.widgets
 
 from django.shortcuts import redirect # For redirecting to main website on changes
 
@@ -116,18 +117,18 @@ def read(request, id):
             
             
     if request.user.is_authenticated:
-        what_new_form.fields['result'].choices = (('',' '),)
+        what_new_form.fields['result'].widget = django.forms.widgets.HiddenInput()
         what_now_form.fields['result'].choices = (('',' '),)
         whats = []
         for what in what_ups:
-            what_new_form.fields['result'].choices.append((str(what.id),what.action))
+            # what_new_form.fields['result'].choices.append((str(what.id),what.action))
             what_now_form.fields['result'].choices.append((str(what.id),what.action))
             whats.insert(0,what)
         if (what_now):
-            what_new_form.fields['result'].choices.append((str(what_now.id),what_now.action))
+            # what_new_form.fields['result'].choices.append((str(what_now.id),what_now.action))
             whats.append(what_now)
         for what in what_downs:
-            what_new_form.fields['result'].choices.append((str(what.id),what.action))
+            # what_new_form.fields['result'].choices.append((str(what.id),what.action))
             whats.append(what)
         for what in what_up_sides:
             if (what.id != id):

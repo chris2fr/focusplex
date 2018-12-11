@@ -19,14 +19,14 @@
         <!--  {{what_now.result.id}}.{{what_now.id}} -->
         In order to
         {{ what_now_form.result }},
-        I
+        I do
         {{ what_now_form.action }}.
         <a href="/delete/{{what_now.id}}" onclick="return confirm('Are you sure?')">X</a>
         </form><BR/>
         
         <!--  {{what_new.result.id}}.{{what.id}} -->
         In order to
-        {{ what_new_form.result }},
+        {{ what_now_form.action.value }},
         I
         <UL>
         {% for whatd in what_downs %}
@@ -37,7 +37,9 @@
             </li> 
         {% endfor %}
             <LI><form action="/create/" method="post">
-            {% csrf_token %}{{what_new_form.action}}.
+            {% csrf_token %}
+            {{what_new_form.result}}
+            {{what_new_form.action}}.
         </form></LI>
 {% else %}
     In order to 
