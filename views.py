@@ -94,7 +94,7 @@ def read(request, id):
     
     if (not zoom_id or int(zoom_id) == 0):
         for what in What.objects.order_by('action').filter(filter).filter(result__isnull=True).all():
-            what_downs.append(what)
+            what_ups.append(what)
     else:
         what_now = What.objects.filter(filter).get(pk=zoom_id)
         for what in What.objects.filter(filter).filter(result__id=zoom_id).all(): # Down
@@ -153,7 +153,16 @@ def read(request, id):
 
     if (not zoom_id):
         zoom_id = 0
-    return render(request, 'why/read.html', {'what_ups':what_ups,'what_downs':what_downs,'what_now':what_now,'what_now_form':what_now_form,'what_new_form':what_new_form,'zoom_id':int(zoom_id)})
+    return render(request, 'why/read.html', {
+        'what_ups':what_ups,
+        'what_downs':what_downs,
+        'what_now':what_now,
+        'what_up_sides':what_up_sides,
+        'what_now_form':what_now_form,
+        'what_new_form':what_new_form,
+        'zoom_id':int(zoom_id),
+        }
+        )
 
 def index(request):
     """Shows Top-Level TaskWhys"""
