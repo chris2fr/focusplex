@@ -10,7 +10,7 @@ from django.shortcuts import redirect # For redirecting to main website on chang
 def create(request):
     """Creates a new TaskWhy"""
     what = ''
-    id_result = 0
+    id_result = ''
     if (request.POST.get("result")):
         id_result = request.POST.get("result")
     # Handle POST Add first
@@ -30,6 +30,8 @@ def create(request):
             if (id_result and int(id_result) > 0):
                 what.result = What.objects.get(pk=id_result)
             what.save()
+    if(not id_result):
+        id_result = '0'
     return redirect('/read/{}'.format(id_result))
     
 def update(request, id):
