@@ -3,6 +3,7 @@ from django.db.models import Q # for joining multiple queries
 from .models import Who, What
 from .forms import WhatForm
 import django.forms.widgets
+from django.contrib import auth
 
 from django.shortcuts import redirect # For redirecting to main website on changes
 
@@ -64,6 +65,7 @@ def update(request, id):
             what.save()
     return redirect('/read/{}'.format(id))
     
+# @login_required
 def delete(request, id):
     """Deletes an existing TaskWhy"""
     result__id = False
@@ -169,6 +171,18 @@ def index(request):
     """Shows Top-Level TaskWhys"""
     return redirect('/read/0')
 
+def login(request):
+    if (request.method == 'POST'):
+        user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
+    return redirect('/')
+        #if user is not None:
+            # A backend authenticated the credentials
+        #else:
+            # No backend authenticated the credentials
+def logout(request):
+    auth.logout(request)
+    return redirect('/read/0')
+    
 def who(request, who_id):
     return render(request, 'why/who.html', {})
 

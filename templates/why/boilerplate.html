@@ -14,7 +14,12 @@
 <div id='topmenu'>
 <ul>
     <li><a href="/">Home</a>
-    <li><a href="/admin/login/?next=/">Log{in/out}</a></li>
+    <li>{% if user.is_authenticated %}
+        {{ user.username }}  <a href="/accounts/logout">Logout</a>   
+        {% else %}
+        <a href='/accounts/login'>Login</A> 
+        {% endif %}
+    </li>
     <!-- <li><a href="/admin/why/who/">Contacts</a></li> -->
 </ul>
 </div>
