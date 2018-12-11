@@ -5,6 +5,7 @@
 * Redid the views to separate the CRUD
 * Changed the ergonomics
 * Changed the logic of reaffecting the tasks
+* Simplified user interface
 
 ## 0.0.1-20181209
 

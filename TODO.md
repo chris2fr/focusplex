@@ -22,7 +22,7 @@ It would be nice to be able to export branches, trees and leaves of whats and to
 
 ## Unit Tests and Documentation
 
-Code elegantly and according to good practices.
+Code elegantly and according to good practices. The situation has already come about where I have broken simple features as seen through the web interface.
 
 ## Confirm the Who User Proxy Object
 
