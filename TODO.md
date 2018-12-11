@@ -1,5 +1,9 @@
 # Why ToDo
 
+## Propose Individual Preferences for Each User
+
+I would like to automatically render the first letter of any todo lowercase on creation and modification. Others my not want that feature. There are also other personal application settings. The goal here is to set up a mechanism of application settings and apply them to rendering the first letter of every action lowercase.
+
 ## Add a Search Function
 
 It would be nice to be able to search for items with a text box.
