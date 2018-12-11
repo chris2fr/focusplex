@@ -1,6 +1,6 @@
 {% extends "why/boilerplate.html" %}
 
-{% block title %}My amazing blog{% endblock %}
+{% block title %}T'ask?{% endblock %}
 
 {% block content %}
 <form action="/update/{{zoom_id}}" method="post">
@@ -43,7 +43,7 @@
         <td>{{ what_now_form.result }},</td>
         <td align="center">do</TD>
         <td>{{ what_now_form.action }}.</td>
-        <TD><a href="/delete/{{what_now.id}}/delete/">X</a></td>
+        <TD><a href="/delete/{{what_now.id}}">X</a></td>
         <!-- <td></td><td></td><td></td><td></td><td></td><td></td>-->
     </tr> 
     {% endif %}

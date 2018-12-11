@@ -153,8 +153,6 @@ def read(request, id):
 def index(request):
     """Shows Top-Level TaskWhys"""
     return redirect('/read/0')
-    
-
 
 def who(request, who_id):
     return render(request, 'why/who.html', {})
