@@ -7,21 +7,21 @@
 <!-- WHAT UP -->
 
 {% if zoom_id > 0 %}
-    I do <a href="/read/0">task why</a>.<BR/>
+    Do <a href="/read/0">task why</a>.<BR/>
     {% for what in what_ups %}
     In order to 
         {% if what.result.id %}
      <a href="/read/{{what.result.id}}">{{ what.result.action }}</a>,
         {% else %}
      <a href="/read/0">task why</a>,
-        {% endif %} I do <a href="/read/{{what.id}}">{{ what.action }}</a>.
+        {% endif %}do <a href="/read/{{what.id}}">{{ what.action }}</a>.
     {% endfor %}
 
     <form action="/update/{{zoom_id}}" method="post">
     {% csrf_token %}
     In order to
     {{ what_now_form.result }},
-    I do
+    do
     {{ what_now_form.action }}.
     <a href="/delete/{{what_now.id}}" onclick="return confirm('Are you sure?')">X</a>
     </form>
@@ -29,21 +29,21 @@
     In order <strong>to {{ what_now_form.action.value }}</strong>,
     <UL> 
     {% for whatd in what_downs %} 
-        <li>I do <a href="/read/{{whatd.id}}">{{whatd.action}}</a>. 
+        <li>do <a href="/read/{{whatd.id}}">{{whatd.action}}</a>. 
             <a href="/delete/{{whatd.id}}" onclick="return confirm('Are you sure?')">X</a>
         </li>
     {% endfor %} 
         <LI><form action="/create/" method="post">
-            {% csrf_token %} {{what_new_form.result}}I do {{what_new_form.action}}. 
+            {% csrf_token %} {{what_new_form.result}}do {{what_new_form.action}}. 
         </form></LI> 
         </UL> 
 {% else %}
         In order to <strong>task why</strong>, 
         <UL>
         {% for what in what_tops %}
-        <LI>I do <a href="/read/{{what.id}}">{{ what.action }}</a>.</li> 
+        <LI>do <a href="/read/{{what.id}}">{{ what.action }}</a>.</li> 
         {% endfor %} 
-        <LI><form action="/create/" method="post">{% csrf_token %}I do {{what_new_form.action}}.</form></LI> 
+        <LI><form action="/create/" method="post">{% csrf_token %}do {{what_new_form.action}}.</form></LI> 
     </UL> 
 {% endif %}
 
