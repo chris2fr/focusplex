@@ -6,107 +6,55 @@
 
 <!-- WHAT UP -->
 
-<ul>
-    <li>
-        <a href="/read/0">In Order</a>
-    </li>
+{% if zoom_id > 0 %}
+
     {% for what in what_ups %}
-    <li>
-        <!-- {{what.result.id}}.{{what.id}} -->
-        To
-        {% if what.result.action %}
-        <a href="/read/{{what.result.id}}">{{what.result.action}}</a>,
-        do
-        {% endif %}
-        <a href="/read/{{what.id}}">{{ what.action }}</a>.
-        <!-- <a href="/delete/{{what.id}}">X</a> -->
-    </li> 
+    {% if what.result.id %}
+     In order to <a href="/read/{{what.result.id}}">{{ what.result.action }}</a> 
+    {% endif %} I do <a href="/read/{{what.id}}">{{ what.action }}<BR/>
     {% endfor %}
-    <ul>
-<!-- WHAT UPSIDE -->
-    {% for what in what_up_sides %}
 
-    {% if what.id == zoom_id %}
-    
-    {% if zoom_id > 0 %}
-    
-    <!-- WHAT NOW -->
-
-    <li>
         <form action="/update/{{zoom_id}}" method="post">
             {% csrf_token %}
         <!--  {{what_now.result.id}}.{{what_now.id}} -->
-        To
+        In order to
         {{ what_now_form.result }},
-        do
+        I
         {{ what_now_form.action }}.
         <a href="/delete/{{what_now.id}}" onclick="return confirm('Are you sure?')">X</a>
-        </form>
-    </li> 
-
-    {% endif %}
-
-    <!-- WHAT DOWN -->
-    <ul>
-    {% for whatd in what_downs %}
-    <li>
-        <!--  {{whatd.result.id}}.{{whatd.id}} -->
-        To{% if whatd.result.action %},
-        <a href="/read/{{whatd.result.id}}">{{whatd.result.action}}</a>,
-        do
-        {% endif %}
-        <a href="/read/{{whatd.id}}">{{whatd.action}}</a>.
-        <a href="/delete/{{whatd.id}}" onclick="return confirm('Are you sure?')">X</a>
-    </li> 
+        </form><BR/>
+        
+        <!--  {{what_new.result.id}}.{{what.id}} -->
+        In order to
+        {{ what_new_form.result }},
+        I
+        <UL>
+        {% for whatd in what_downs %}
+            <li>
+                do
+                <a href="/read/{{whatd.id}}">{{whatd.action}}</a>.
+                <a href="/delete/{{whatd.id}}" onclick="return confirm('Are you sure?')">X</a>
+            </li> 
+        {% endfor %}
+            <LI><form action="/create/" method="post">
+            {% csrf_token %}{{what_new_form.action}}.
+        </form></LI>
+{% else %}
+    In order to 
+<UL>
+    {% for what in what_tops %}
+    <li><a href="/read/{{what.id}}">{{ what.action }}</a></li>
     {% endfor %}
+    <LI>
     <form action="/create/" method="post">
         {% csrf_token %}
-    <!--  {{what_new.result.id}}.{{what.id}} -->
-    To
-    {{ what_new_form.result }},
-    do
-    {{what_new_form.action}}.
-    </form>
-    </ul>
-    
-    
-    {% else %}
-    
-    
-    <li>
-        <!--  {{what.result.id}}.{{what.id}} -->
-        To
-        {% if what.result.action %}
-        <a href="/read/{{what.result.id}}">{{what.result.action}}</a>,
-        do
-        {% endif %}
-        <a href="/read/{{what.id}}">{{what.action}}</a>.
-        <a href="/delete/{{what.id}}" onclick="return confirm('Are you sure?')">X</a>
-    </li>
-    
-    
-    
-    
-
-    {% endif %}
-    
-    {% endfor %}
-
-    
-
-<!-- WHAT NEW -->
-
-    </ul>
-
-</li>
-<li>
-        <form action="/create/" method="post">
-            {% csrf_token %}
-        <!--  {{what_new.result.id}}.{{what.id}} -->
-        To
         {{what_new_form.action}}.
-        </form>
-    </li>
-</ul>
+    </form>
+</LI>
+</UL>
+{% endif %}
+
+
+
 {% endblock %}
 

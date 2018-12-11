@@ -82,6 +82,7 @@ def read(request, id):
     what_ups = []
     what_downs = []
     what_now = ''
+    what_tops = []
     what_up_sides = []
     what_now_form = WhatForm()
     what_new_form = WhatForm()
@@ -92,10 +93,10 @@ def read(request, id):
     else:
         filter = Q(public=True)
     
-    if (not zoom_id or int(zoom_id) == 0):
-        for what in What.objects.order_by('action').filter(filter).filter(result__isnull=True).all():
-            what_ups.append(what)
-    else:
+    for what in What.objects.order_by('action').filter(filter).filter(result__id=None).all():
+        what_tops.append(what)
+    
+    if (zoom_id and int(zoom_id) > 0):
         what_now = What.objects.filter(filter).get(pk=zoom_id)
         for what in What.objects.filter(filter).filter(result__id=zoom_id).all(): # Down
              what_downs.append(what) 
@@ -110,8 +111,8 @@ def read(request, id):
             for whati in What.objects.order_by('action').filter(filter).filter(result__id=what.result.id).all():
                 what_up_sides.append(whati)
         else:
-            for whati in What.objects.order_by('action').filter(filter).filter(result__id=None).all():
-                what_up_sides.append(whati)
+            what_up_sides = what_tops
+            
             
             
     if request.user.is_authenticated:
@@ -154,6 +155,7 @@ def read(request, id):
     if (not zoom_id):
         zoom_id = 0
     return render(request, 'why/read.html', {
+        'what_tops':what_tops,
         'what_ups':what_ups,
         'what_downs':what_downs,
         'what_now':what_now,
