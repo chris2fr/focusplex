@@ -1,5 +1,9 @@
 # Why ToDo
 
+## Add a Search Function
+
+It would be nice to be able to search for items with a text box.
+
 ## Journal Activities for Historical Nostalgia
 
 The actions of tasks done can be consulted later in life to appreciate the beauty of things. This can be a journaling tool too.

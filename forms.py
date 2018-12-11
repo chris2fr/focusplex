@@ -3,7 +3,9 @@ from .models import What
 
 class WhatForm(forms.Form):
     result = forms.ChoiceField(label='to',
-        required=False)
+        required=False,
+        # choices=(('',' ')),
+        )
     action = forms.CharField(label="do",
         max_length=255,
         required=True,
@@ -16,7 +18,7 @@ class WhatForm(forms.Form):
             'autofocus': 'autofocus',
             'size':32
         })
-        self.fields['result'].choices.append((0,'top'))
+        # self.fields['result'].choices.append(('',' '))
     
     #def __init__ (self, request):
     #    if request.user.is_authenticated:
