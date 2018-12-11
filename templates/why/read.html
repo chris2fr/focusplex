@@ -7,26 +7,11 @@
 <!-- WHAT UP -->
 
 {% if zoom_id > 0 %}
-    Do <a href="/read/0">task why</a>.<BR/>
-    {% for what in what_ups %}
-    In order to 
-        {% if what.result.id %}
-     <a href="/read/{{what.result.id}}">{{ what.result.action }}</a>,
-        {% else %}
-     <a href="/read/0">task why</a>,
-        {% endif %}do <a href="/read/{{what.id}}">{{ what.action }}</a>.
-    {% endfor %}
 
-    <form action="/update/{{zoom_id}}" method="post">
-    {% csrf_token %}
-    In order to
-    {{ what_now_form.result }},
-    do
-    {{ what_now_form.action }}.
-    <a href="/delete/{{what_now.id}}" onclick="return confirm('Are you sure?')">X</a>
-    </form>
+
+
         
-    In order <strong>to {{ what_now_form.action.value }}</strong>,
+    In order to <strong>{{ what_now_form.action.value }}</strong>,
     <UL> 
     {% for whatd in what_downs %} 
         <li>do <a href="/read/{{whatd.id}}">{{whatd.action}}</a>. 
@@ -37,15 +22,30 @@
             {% csrf_token %} {{what_new_form.result}}do {{what_new_form.action}}. 
         </form></LI> 
         </UL> 
+
+        <form action="/update/{{zoom_id}}" method="post">
+        {% csrf_token %}
+        Do
+        {{ what_now_form.action }},
+        in order to
+        {{ what_now_form.result }}.
+        <a href="/delete/{{what_now.id}}" onclick="return confirm('Are you sure?')">X</a>
+        </form>
+        <BR/>
+    {% for what in what_ups reversed %}
+    Do <a href="/read/{{what.id}}">{{ what.action }}</a>{% if what.result.id %} 
+    in order to
+     <a href="/read/{{what.result.id}}">{{ what.result.action }}</a>{% endif %}.<BR/>
+    {% endfor %}
+    
 {% else %}
-        In order to <strong>task why</strong>, 
         <UL>
         {% for what in what_tops %}
-        <LI>do <a href="/read/{{what.id}}">{{ what.action }}</a>.</li> 
+        <LI>To <a href="/read/{{what.id}}">{{ what.action }}</a>.</li> 
         {% endfor %} 
-        <LI><form action="/create/" method="post">{% csrf_token %}do {{what_new_form.action}}.</form></LI> 
+        <LI><form action="/create/" method="post">{% csrf_token %}To {{what_new_form.action}}.</form></LI> 
     </UL> 
-{% endif %}
+{% endif %} 
 
 <P>Demo user 'demo' password 'showmetaskwhy'. For an account, write chris@mann.fr. </P>
 
