@@ -11,7 +11,7 @@
     {% for what in what_ups %}
     {% if what.result.id %}
      In order to <a href="/read/{{what.result.id}}">{{ what.result.action }}</a> 
-    {% endif %} I do <a href="/read/{{what.id}}">{{ what.action }}<BR/>
+    {% endif %} I do <a href="/read/{{what.id}}">{{ what.action }}</a><BR/>
     {% endfor %}
 
         <form action="/update/{{zoom_id}}" method="post">
