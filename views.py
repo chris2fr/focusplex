@@ -98,27 +98,25 @@ def read(request, id):
         what_tops.append(what)
     
     if (zoom_id and int(zoom_id) > 0):
-        what_now = What.objects.filter(filter).get(pk=zoom_id)
-        for what in What.objects.filter(filter).filter(result__id=zoom_id).all(): # Down
+        what_now = What.objects.order_by('action').filter(filter).get(pk=zoom_id)
+        for what in What.objects.order_by('action').filter(filter).filter(result__id=zoom_id).all(): # Down
              what_downs.append(what) 
         # Now up
         what = What.objects.get(pk=zoom_id)
         while(what.result): # up
-            what_ups.insert(0,What.objects.filter(filter).get(pk=what.result.id))
+            what_ups.insert(0,What.objects.order_by('action').filter(filter).get(pk=what.result.id))
             what = what.result
         # New up sides
-        what = What.objects.filter(filter).get(pk=zoom_id)
+        what = What.objects.order_by('action').filter(filter).get(pk=zoom_id)
         if (what.result):
             for whati in What.objects.order_by('action').filter(filter).filter(result__id=what.result.id).all():
                 what_up_sides.append(whati)
         else:
             what_up_sides = what_tops
             
-            
-            
     if request.user.is_authenticated:
         what_new_form.fields['result'].widget = django.forms.widgets.HiddenInput()
-        what_now_form.fields['result'].choices = (('',' '),)
+        what_now_form.fields['result'].choices = (('',"t'ask why"),)
         whats = []
         for what in what_ups:
             # what_new_form.fields['result'].choices.append((str(what.id),what.action))

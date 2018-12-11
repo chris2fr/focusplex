@@ -6,57 +6,47 @@
 
 <!-- WHAT UP -->
 
+I do <a href="/read/0">t'ask why</a>.<BR/>
 {% if zoom_id > 0 %}
-
     {% for what in what_ups %}
-    {% if what.result.id %}
-     In order to <a href="/read/{{what.result.id}}">{{ what.result.action }}</a> 
-    {% endif %} I do <a href="/read/{{what.id}}">{{ what.action }}</a><BR/>
+    In order to 
+        {% if what.result.id %}
+     <a href="/read/{{what.result.id}}">{{ what.result.action }}</a>,
+        {% else %}
+     <a href="/read/0">t'ask why</a>,
+        {% endif %} I do <a href="/read/{{what.id}}">{{ what.action }}</a>.
     {% endfor %}
 
-        <form action="/update/{{zoom_id}}" method="post">
-            {% csrf_token %}
-        <!--  {{what_now.result.id}}.{{what_now.id}} -->
-        In order to
-        {{ what_now_form.result }},
-        I do
-        {{ what_now_form.action }}.
-        <a href="/delete/{{what_now.id}}" onclick="return confirm('Are you sure?')">X</a>
-        </form><BR/>
-        
-        <!--  {{what_new.result.id}}.{{what.id}} -->
-        In order to
-        {{ what_now_form.action.value }},
-        I
-        <UL>
-        {% for whatd in what_downs %}
-            <li>
-                do
-                <a href="/read/{{whatd.id}}">{{whatd.action}}</a>.
-                <a href="/delete/{{whatd.id}}" onclick="return confirm('Are you sure?')">X</a>
-            </li> 
-        {% endfor %}
-            <LI><form action="/create/" method="post">
-            {% csrf_token %}
-            {{what_new_form.result}}
-            {{what_new_form.action}}.
-        </form></LI>
-{% else %}
-    In order to 
-<UL>
-    {% for what in what_tops %}
-    <li><a href="/read/{{what.id}}">{{ what.action }}</a></li>
-    {% endfor %}
-    <LI>
-    <form action="/create/" method="post">
-        {% csrf_token %}
-        {{what_new_form.action}}.
+    <form action="/update/{{zoom_id}}" method="post">
+    {% csrf_token %}
+    In order to
+    {{ what_now_form.result }},
+    I do
+    {{ what_now_form.action }}.
+    <a href="/delete/{{what_now.id}}" onclick="return confirm('Are you sure?')">X</a>
     </form>
-</LI>
-</UL>
+        
+    In order <strong>to {{ what_now_form.action.value }}</strong>, I 
+    <UL> 
+    {% for whatd in what_downs %} 
+        <li> do <a href="/read/{{whatd.id}}">{{whatd.action}}</a>. 
+            <a href="/delete/{{whatd.id}}" onclick="return confirm('Are you sure?')">X</a>
+        </li>
+    {% endfor %} 
+        <LI><form action="/create/" method="post">
+            {% csrf_token %} {{what_new_form.result}}do {{what_new_form.action}}. 
+        </form></LI> 
+        </UL> 
+{% else %}
+        <UL>
+        {% for what in what_tops %}
+        <LI>In order to <a href="/read/0">t'ask why</a>, I do <a href="/read/{{what.id}}">{{ what.action }}</a></li> 
+        {% endfor %} 
+        <LI><form action="/create/" method="post">{% csrf_token %}In order to <a href="/read/0">t'ask why</a>, I do {{what_new_form.action}}.</form></LI> 
+    </UL> 
 {% endif %}
 
-Demo user 'demo' password 'showmetaskwhy'. If you subsequently have an administrative interface, click on "view site" on the upper right. For an account, write chris@mann.fr. 
+<P>Demo user 'demo' password 'showmetaskwhy'. If you subsequently have an administrative interface, click on "view site" on the upper right. For an account, write chris@mann.fr. </P>
 
 {% endblock %}
 
