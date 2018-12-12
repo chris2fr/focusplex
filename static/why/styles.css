@@ -4,3 +4,14 @@ display: inline;
 list-style-type: none;
 padding-right: 20px;
 }
+
+body {
+    font-size: 1.5em;
+}
+
+input, button, select, textarea, optgroup, option {
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+}
