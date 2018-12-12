@@ -12,7 +12,7 @@
 
     In order to <strong>{{ what_now.action }}</strong> -- 
     <br/>{% for what in what_ups reversed %}
-    in order to <a href="/read/{{what.id}}">{{ what.action }}</a>{% if forloop.last %} -- {% endif %}
+    in order to <a href="/read/{{what.id}}">{{ what.action }}</a>{% if forloop.last %} -- {% endif %}<BR/>
     <!--
     {% if what.result %}
     in order to <a href="/read/{{what.id}}">{{ what.result.action}}</a>
