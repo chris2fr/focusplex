@@ -30,11 +30,11 @@
         <form action="/update/{{zoom_id}}" method="post">
         {% csrf_token %}
 Edit this T'ask?<br/>
-        Do
-        {{ what_now_form.action }},
-        in order to
-        {{ what_now_form.result }}.
-        (<a href="/delete/{{what_now.id}}" onclick="return confirm('Are you sure you wish to delete this T\'ask??')">X</a>)
+        In order to
+        {{ what_now_form.result }},
+        do
+        {{ what_now_form.action }}.
+        (<a href="/delete/{{what_now.id}}" onclick="return confirm('Are you sure you wish to delete this T\'ask??')">Delete</a>)
         </form>
 
     
