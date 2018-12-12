@@ -18,12 +18,12 @@
     in order to be <a href="/read/{{what.id}}">{{user.username}}</a>;<br/>
     <UL> 
     {% for whatd in what_downs %} 
-        <li>do <a href="/read/{{whatd.id}}">{{whatd.action}}</a>. 
+        <li>do <a href="/read/{{whatd.id}}">{{whatd.action}}</a>,
             (<a href="/delete/{{whatd.id}}" onclick="return confirm('Are you sure you wish to delete this T\'ask??')">X</a>)
         </li>
     {% endfor %} 
         <LI><form action="/create/" method="post">
-            {% csrf_token %} {{what_new_form.result}}do {{what_new_form.action}}. 
+            {% csrf_token %} {{what_new_form.result}}and/or do {{what_new_form.action}}.
         </form></LI> 
         </UL> 
 
@@ -41,9 +41,9 @@ Edit this T'ask?<br/>
 {% else %}
         <UL>
         {% for what in what_tops %}
-        <LI>To <a href="/read/{{what.id}}">{{ what.action }}</a>.</li> 
+        <LI>To <a href="/read/{{what.id}}">{{ what.action }}</a></li> 
         {% endfor %} 
-        <LI><form action="/create/" method="post">{% csrf_token %}To {{what_new_form.action}}.</form></LI> 
+        <LI><form action="/create/" method="post">{% csrf_token %}To {{what_new_form.action}}</form></LI> 
     </UL> 
 {% endif %} 
 
