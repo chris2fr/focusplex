@@ -152,7 +152,8 @@ def read(request, id):
             else:
                 what_now_form.fields['result'].initial = ''
                 what_now_form.fields['result'].value = ''
-            what_now_form.fields['action'].widget.attrs.update({'autofocus': False})
+            del(what_now_form.fields['action'].widget.attrs['autofocus'])
+            what_now_form.fields['action'].widget.attrs['onChange'] = 'javascrip:this.form.submit();'
 
     if (not zoom_id):
         zoom_id = 0

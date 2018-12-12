@@ -11,7 +11,7 @@
 {% if zoom_id > 0 %}
 
     In order to <strong>{{ what_now.action}}</strong><br/>
-    {% for what in what_ups %}
+    {% for what in what_ups reversed %}
     in order to
      <a href="/read/{{what.id}}">{{ what.action }}</a><BR/>
     {% endfor %}

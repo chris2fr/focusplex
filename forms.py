@@ -16,7 +16,10 @@ class WhatForm(forms.Form):
         super(WhatForm, self).__init__(*args, **kwargs)
         self.fields['action'].widget.attrs.update({
             'autofocus': 'autofocus',
-            'size':32
+            'size':32,
+        })
+        self.fields['result'].widget.attrs.update({
+            'onChange': 'javascrip:this.form.submit();',
         })
         # self.fields['result'].choices.append(('',' '))
     
