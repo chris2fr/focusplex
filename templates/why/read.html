@@ -10,15 +10,16 @@
 
 {% if zoom_id > 0 %}
 
-    To
-    {% if what_now.result.id %} 
-    <a href="/read/{{what_now.result.id}}">{{what_now.result.action}}</a> 
-    {% endif %} 
-    <br/>do <strong>{{ what_now_form.action.value }}</strong>:
+    In order to <strong>{{ what_now.action}}</strong><br/>
+    {% for what in what_ups %}
+    in order to
+     <a href="/read/{{what.id}}">{{ what.action }}</a><BR/>
+    {% endfor %}
+    in order to be <a href="/read/{{what.id}}">{{user.username}}</a>;<br/>
     <UL> 
     {% for whatd in what_downs %} 
         <li>do <a href="/read/{{whatd.id}}">{{whatd.action}}</a>. 
-            <a href="/delete/{{whatd.id}}" onclick="return confirm('Are you sure?')">X</a>
+            (<a href="/delete/{{whatd.id}}" onclick="return confirm('Are you sure you wish to delete this T\'ask??')">X</a>)
         </li>
     {% endfor %} 
         <LI><form action="/create/" method="post">
@@ -28,18 +29,14 @@
 
         <form action="/update/{{zoom_id}}" method="post">
         {% csrf_token %}
+Edit this T'ask?<br/>
         Do
         {{ what_now_form.action }},
         in order to
         {{ what_now_form.result }}.
-        <a href="/delete/{{what_now.id}}" onclick="return confirm('Are you sure?')">X</a>
+        (<a href="/delete/{{what_now.id}}" onclick="return confirm('Are you sure you wish to delete this T\'ask??')">X</a>)
         </form>
-        <BR/>
-    {% for what in what_ups reversed %}
-    Do <a href="/read/{{what.id}}">{{ what.action }}</a>{% if what.result.id %} 
-    in order to
-     <a href="/read/{{what.result.id}}">{{ what.result.action }}</a>{% endif %}.<BR/>
-    {% endfor %}
+
     
 {% else %}
         <UL>
