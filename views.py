@@ -119,7 +119,7 @@ def read(request, id):
             
     if request.user.is_authenticated:
         what_new_form.fields['result'].widget = django.forms.widgets.HiddenInput()
-        what_now_form.fields['result'].choices = ((''," "),)
+        what_now_form.fields['result'].choices = (('',"be {}".format(request.user.username)),)
         whats = []
         for what in what_ups:
             # what_new_form.fields['result'].choices.append((str(what.id),what.action))

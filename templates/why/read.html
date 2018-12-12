@@ -10,12 +10,20 @@
 
 {% if zoom_id > 0 %}
 
-    In order to <strong>{{ what_now.action}}</strong><br/>
+    In order to <strong>{{ what_now.action }}</strong> -- <br/>
+    
     {% for what in what_ups reversed %}
-    in order to
-     <a href="/read/{{what.id}}">{{ what.action }}</a><BR/>
+    in order to <a href="/read/{{what.id}}">{{ what.action }}</a> 
+    <!--
+    {% if what.result %}
+    in order to <a href="/read/{{what.id}}">{{ what.result.action}}</a>
+    {% else %}
+    in order to be <a href="/read/{{what.id}}">{{user.username}}</a>
+    {% endif %}
+    -->
+        <br/>
     {% endfor %}
-    in order to be <a href="/read/{{what.id}}">{{user.username}}</a>;<br/>
+    in order to be <a href="/read/{{what.id}}">{{user.username}}</a> -- <br/>
     <UL> 
     {% for whatd in what_downs %} 
         <li><form action="/delete/{{whatd.id}}" method="get">do <a href="/read/{{whatd.id}}">{{whatd.action}}</a>,
@@ -26,15 +34,18 @@
             {% csrf_token %} {{what_new_form.result}}and/or do {{what_new_form.action}}. <input type="submit" value="Add"/>
         </form></LI> 
         </UL> 
-
-        <form action="/update/{{zoom_id}}" method="post">
-        {% csrf_token %}
-Edit this T'ask?<br/>
-        In order to
-        {{ what_now_form.result }},
-        do
-        {{ what_now_form.action }}. <input type="submit" value="Update"/></form>
-    
+    <!--{% if what_now.result %}
+    Do <a href="/read/{{ what_now.result.id }}">{{ what_now.result.action }}</a>.<br/>
+    {% else %}
+    Do be <a href="/read/{{what.id}}">{{user.username}}</a>.<br/>
+    {% endif %}
+    -->
+        <hr/>
+    <form action="/update/{{zoom_id}}" method="post">
+    {% csrf_token %}
+    To {{ what_now_form.action }}<BR/>
+    in order to {{ what_now_form.result }}.
+    <input type="submit" value="Update"/></form>
 {% else %}
         <UL>
         {% for what in what_tops %}
