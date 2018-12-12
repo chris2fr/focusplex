@@ -10,9 +10,9 @@
 
 {% if zoom_id > 0 %}
 
-    In order to <strong>{{ what_now.action }}</strong> -- <br/>
-    {% for what in what_ups reversed %}
-    in order to <a href="/read/{{what.id}}">{{ what.action }}</a> 
+    In order to <strong>{{ what_now.action }}</strong> -- 
+    <br/>{% for what in what_ups reversed %}
+    in order to <a href="/read/{{what.id}}">{{ what.action }}</a><br/>
     <!--
     {% if what.result %}
     in order to <a href="/read/{{what.id}}">{{ what.result.action}}</a>
@@ -20,9 +20,9 @@
     in order to be <a href="/read/{{what.id}}">{{user.username}}</a>
     {% endif %}
     -->
-        <br/>
+        
     {% endfor %}
-    in order to <a href="/read/{{what.id}}">be {{user.username}}</a> -- <br/>
+    <!-- in order to <a href="/read/{{what.id}}">be {{user.username}}</a> --> -- <br/>
     <UL> 
     {% for whatd in what_downs %} 
         <li><form action="/delete/{{whatd.id}}" method="get">do <a href="/read/{{whatd.id}}">{{whatd.action}}</a>,
