@@ -36,7 +36,11 @@
 
 {# Assumes you setup the password_reset view in your URLconf #}
 
-<P>Demo user '<code>demo</code>' password '<code>showmetaskwhy</code>'. For an account, write <a href="mailto:chris@mann.fr">chris@mann.fr</a>. </P>
+<P>To <strong>login with the demo user</strong><br/>
+do <a href="#" onClick="javascript:document.getElementById('id_username').value='demo';document.getElementById('id_password').value='showmetaskwhy';">click here</a> (or manually enter '<code>demo</code>' for the username and '<code>showmetaskwhy</code>' for the password) and click the login button.</p>
+
+<P>To <strong>obtain an account</strong><br/>
+do write <a href="mailto:chris@mann.fr">chris@mann.fr</a>. </P>
 
 <!--
 <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
