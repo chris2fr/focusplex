@@ -2,13 +2,14 @@ from django import forms
 from .models import What
 
 class WhatForm(forms.Form):
-    result = forms.ChoiceField(label='to',
+    result = forms.ChoiceField(label='resulting action',
         required=False,
         # choices=(('',' ')),
         )
-    action = forms.CharField(label="do",
+    action = forms.CharField(label="initiating action",
         max_length=255,
         required=True,
+        help_text="verb something (somehow)",
         )
     # id = forms.HiddenField()
     
@@ -17,7 +18,9 @@ class WhatForm(forms.Form):
         self.fields['action'].widget.attrs.update({
             'autofocus': 'autofocus',
             'size':32,
+            'placeholder':self.fields['action'].help_text
         })
+        # self.fields['action'].widget.help_text = self.fields['action'].help_text
         self.fields['result'].widget.attrs.update({
             'onChange': 'javascrip:this.form.submit();',
         })
