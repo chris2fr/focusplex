@@ -94,7 +94,8 @@ def read(request, id):
     if request.user.is_authenticated:
         filter = Q(created_by=request.user)
     else:
-        filter = Q(public=True)
+        return redirect('/accounts/login')
+        # filter = Q(public=True)
     
     for what in What.objects.order_by('action').filter(filter).filter(result__id=None).all():
         what_tops.append(what)
