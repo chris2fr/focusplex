@@ -10,41 +10,29 @@
 
 {% if zoom_id > 0 %}
 
-    In order to <strong>{{ what_now.action }}</strong> -- 
-    <br/>{% for what in what_ups reversed %}
-    in order to <a href="/read/{{what.id}}">{{ what.action }}</a>{% if forloop.last %} -- {% endif %}<BR/>
-    <!--
-    {% if what.result %}
-    in order to <a href="/read/{{what.id}}">{{ what.result.action}}</a>
-    {% else %}
-    in order to be <a href="/read/{{what.id}}">{{user.username}}</a>
-    {% endif %}
-    -->
-        
-    {% endfor %}
-    <!-- in order to <a href="/read/{{what.id}}">be {{user.username}}</a> --> 
-    <UL> 
-    {% for whatd in what_downs %} 
-        <li><form action="/delete/{{whatd.id}}" method="get">do <a href="/read/{{whatd.id}}">{{whatd.action}}</a>,
-            <input type="submit" onclick="return confirm('Are you sure you wish to delete this T\'ask??')" value="Del."/>
-            </form></li>
-    {% endfor %} 
-        <LI><form action="/create/" method="post">
-            {% csrf_token %} {{what_new_form.result}}and/or do {{what_new_form.action}}. <input type="submit" value="Add"/>
-        </form></LI> 
-        </UL> 
-    <!--{% if what_now.result %}
-    Do <a href="/read/{{ what_now.result.id }}">{{ what_now.result.action }}</a>.<br/>
-    {% else %}
-    Do be <a href="/read/{{what.id}}">{{user.username}}</a>.<br/>
-    {% endif %}
-    -->
-        <hr/>
+    <H1>To <strong>{{ what_now.action }}</strong>,</H1>
     <form action="/update/{{zoom_id}}" method="post">
     {% csrf_token %}
-    To {{ what_now_form.action }}<BR/>
+    To {{ what_now_form.action }}<input type="submit" value="Update"/>
+    {% if what_now.result %}
+    <H2>in order to <a href='/read/{{what_now.result.id}}'>{{ what_now.result.action }}</a>,</H2>
     in order to {{ what_now_form.result }}.
     <input type="submit" value="Update"/></form>
+    {% for what in what_ups reversed %}
+    {% if not forloop.first %}
+    in order to <a href="/read/{{what.id}}">{{ what.action }}</a>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    <H2>do</H2>
+    {% for whatd in what_downs %} 
+    <form action="/delete/{{whatd.id}}" method="get">do <a href="/read/{{whatd.id}}">{{whatd.action}}</a>,
+            <input type="submit" onclick="return confirm('Are you sure you wish to delete this T\'ask??')" value="Del."/>
+            </form>
+    {% endfor %} 
+    <form action="/create/" method="post">
+            {% csrf_token %} {{what_new_form.result}}and/or do {{what_new_form.action}}. <input type="submit" value="Add"/>
+        </form>
 {% else %}
         <UL>
         {% for what in what_tops %}

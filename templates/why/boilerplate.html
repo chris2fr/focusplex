@@ -15,11 +15,12 @@
 <ul>
     <li><a href="/">Home</a>
     <li>{% if user.is_authenticated %}
-        {{ user.username }}  <a href="/accounts/logout">Logout</a>   
+        {{ user.username }}</li>  
+    <li><a href="/accounts/logout">Logout</a></li>   
         {% else %}
-        <a href='/accounts/login'>Login</A> 
+    <li><a href='/accounts/login'>Login</A></li> 
         {% endif %}
-    </li>
+    
     <!-- <li><a href="/admin/why/who/">Contacts</a></li> -->
 </ul>
 <hr/>
