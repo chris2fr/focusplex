@@ -20,7 +20,7 @@
     <input type="submit" value="Update"/></form>
     {% for what in what_ups reversed %}
     {% if not forloop.first %}
-    in order to <a href="/read/{{what.id}}">{{ what.action }}</a>
+    in order to <a href="/read/{{what.id}}">{{ what.action }}</a>{% if not forloop.last %}<br/>{% endif %}
     {% endif %}
     {% endfor %}
     {% endif %}

@@ -9,7 +9,7 @@ class WhatForm(forms.Form):
     action = forms.CharField(label="initiating action",
         max_length=255,
         required=True,
-        help_text="verb something (somehow)",
+        help_text="verb object",
         )
     # id = forms.HiddenField()
     
