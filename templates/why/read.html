@@ -26,7 +26,7 @@
     </div><div id="actionedit" style="display:none;">to {{ what_now_form.action }}<input type="submit" value="Update"/></div>
     {% if what_now.result %}
     <br/>so as to <div id="resultshow" style="display:inline;"><a href='/read/{{what_now.result.id}}'>{{ what_now.result.action }}</a>
-        (<a href="#" onClick="javascript:document.getElementById('resultedit').style.display = 'inline';document.getElementById('resultshow').style.display = 'none';">edit</a>)</div><div id="resultedit" style="display:none;">{{ what_now_form.result }}<input type="submit" value="Update"/></div>
+        (<a href="#" onClick="javascript:document.getElementById('resultedit').style.display = 'inline';document.getElementById('resultshow').style.display = 'none';">move</a>)</div><div id="resultedit" style="display:none;">{{ what_now_form.result }}<input type="submit" value="Update"/></div>
     </form>
     
     {% for what in what_ups reversed %}
