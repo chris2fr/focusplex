@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="{% static "why/styles.css" %}">
-  <title>{% block title %}T'ask?{% endblock %}</title>
+  <title>{% block title %}Task?{% endblock %}</title>
   <meta name="description" content="Who? What! Etc.">
   <meta name="author" content="Chris Mann <chris@mann.fr>">
   <link rel='icon' href='{% static "why/favicon.png" %}' type='image/png'/ >
@@ -13,8 +13,8 @@
 <body>
 <div id='topmenu'>
 <ul>
-    <li><a href="/">TaskWhy.com</a>
-    <li><a href="https://www.tohavedone.com/">ToHaveDone.com</a>
+    <li><a href="/">Task?</a>
+    <li><a href="https://www.tohavedone.com/">To Have Done</a>
     <li>{% if user.is_authenticated %}
         {{ user.username }}</li>  
     <li><a href="/accounts/logout">Logout</a></li>   
@@ -31,7 +31,7 @@
 {% block content %}Manage why you do do what you do do.{% endblock %}
 </div>
 <hr/>
-<P style="font-size:16px;">TaskWhy helps remember todos and their associated objectives in a convenient hierarchical virtual notepad. TaskWhy is available for use at <a href="https://www.taskwhy.com">www.taskwhy.com</a>. TaskWhy source code and project management artifacts are available at <a href="https://github.com/chris2fr/why">https://github.com/chris2fr/why</a>. <a href="https://www.tohavedone.com">ToHaveDone</a> is an associated website addressing processes to envision successful futures using tools such as TaskWhy and others. Inquiries may be addressed to Chris Mann at <a href="mailto:chris@mann.fr">chris@mann.fr</a> or +33 781 811 811 (CET). Enjoy.</P>
+<P style="font-size:16px;">Task? helps remember todos and their associated objectives in a convenient hierarchical virtual notepad. Task? is available for use at <a href="https://www.taskwhy.com">www.taskwhy.com</a>. Task? source code and project management artifacts are available at <a href="https://github.com/chris2fr/why">https://github.com/chris2fr/why</a>. <a href="https://www.tohavedone.com">To Have Done</a> is an associated website addressing processes to envision successful futures using tools such as Task? and others. Inquiries may be addressed to Chris Mann at <a href="mailto:chris@mann.fr">chris@mann.fr</a> or +33 781 811 811 (CET). Enjoy.</P>
 
 </body>
 </html>
