@@ -10,32 +10,35 @@
 
 {% if zoom_id > 0 %}
 
+    {% if what_now.result %}
+        <form action="/update/{{zoom_id}}" method="post">
+            To&nbsp;<div id="resultshow" style="display:inline;"><a href='/read/{{what_now.result.id}}'>{{ what_now.result.action }}</a>
+            (<a href="#" onClick="javascript:document.getElementById('resultedit').style.display = 'inline';document.getElementById('resultshow').style.display = 'none';">move</a>)</div><div id="resultedit" style="display:none;">{{ what_now_form.result }}<input type="submit" value="Update"/></div>
+        
+        {% for what in what_ups reversed %}
+            {% if not forloop.first %}
+                to&nbsp;<a href="/read/{{what.id}}">{{ what.action }}</a>{% if forloop.last %}<br/>{% else %}, {% endif %}
+            {% endif %}
+        {% endfor %}
+        </form>
+    {% endif %}
+
+    <h1><form action="/update/{{zoom_id}}" method="post">
+        {% csrf_token %}
+        <div id="actionshow" style="display:inline;">{% if not what_now.result %}To{% else %}to{% endif %}&nbsp;<strong>{{ what_now.action }}</strong> (<a href="#" onClick="javascript:document.getElementById('actionedit').style.display = 'inline';document.getElementById('actionshow').style.display = 'none';">edit</a>)
+        </div><div id="actionedit" style="display:none;">do&nbsp;{{ what_now_form.action }}<input type="submit" value="Update"/></div>
+    </form></h1>
+
     {% for whatd in what_downs %} 
-    <form action="/delete/{{whatd.id}}" method="get">{% csrf_token %}{% if forloop.first %}Do{% else %}do{% endif %} <a href="/read/{{whatd.id}}">{{whatd.action}}</a>,
-            <input type="submit" onclick="return confirm('Are you sure you wish to delete this T\'ask??')" value="Del."/>
-            </form>
+        <h2><form action="/delete/{{whatd.id}}" method="get">{% csrf_token %}do <a href="/read/{{whatd.id}}">{{whatd.action}}</a>,
+            <input type="submit" onclick="return confirm('Are you sure you wish to delete this TaskWhat?')" value="Del."/>
+        </form></h2>
     {% endfor %} 
-    <form action="/create/" method="post">
+    <h2><form action="/create/" method="post">
         {% csrf_token %} 
         {{what_new_form.result}}
-        {% if what_downs %} and/or do {% else %} Do {% endif %}{{what_new_form.action}} <input type="submit" value="Add"/>
-    </form>
-    <form action="/update/{{zoom_id}}" method="post">
-        {% csrf_token %}
-    <div id="actionshow" style="display:inline;">to <strong>{{ what_now.action }}</strong> (<a href="#" onClick="javascript:document.getElementById('actionedit').style.display = 'inline';document.getElementById('actionshow').style.display = 'none';">edit</a>)
-    </div><div id="actionedit" style="display:none;">to {{ what_now_form.action }}<input type="submit" value="Update"/></div>
-    {% if what_now.result %}
-    <br/>so as to <div id="resultshow" style="display:inline;"><a href='/read/{{what_now.result.id}}'>{{ what_now.result.action }}</a>
-        (<a href="#" onClick="javascript:document.getElementById('resultedit').style.display = 'inline';document.getElementById('resultshow').style.display = 'none';">move</a>)</div><div id="resultedit" style="display:none;">{{ what_now_form.result }}<input type="submit" value="Update"/></div>
-    </form>
-    
-    {% for what in what_ups reversed %}
-    {% if not forloop.first %}
-    in order to <a href="/read/{{what.id}}">{{ what.action }}</a>{% if not forloop.last %}<br/>{% else %}{% endif %}
-    {% endif %}
-    {% endfor %}
-    {% endif %}
-    .
+        {% if what_downs %} and/or do {% else %} Do {% endif %}{{what_new_form.action}} <input type="submit" value="Add"/>.
+    </form></h2>
 
 {% else %}
         <UL>
