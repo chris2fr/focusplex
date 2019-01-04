@@ -8,20 +8,19 @@
 
 <!-- WHAT UP -->
 
-{% if zoom_id > 0 %}
-
     {% if what_now.result %}
+
         <form action="/update/{{zoom_id}}" method="post">
             To&nbsp;<div id="resultshow" style="display:inline;"><a href='/read/{{what_now.result.id}}'>{{ what_now.result.action }}</a>
             (<a href="#" onClick="javascript:document.getElementById('resultedit').style.display = 'inline';document.getElementById('resultshow').style.display = 'none';">move</a>)</div><div id="resultedit" style="display:none;">{{ what_now_form.result }}<input type="submit" value="Update"/></div>
-        
         {% for what in what_ups reversed %}
             {% if not forloop.first %}
                 to&nbsp;<a href="/read/{{what.id}}">{{ what.action }}</a>{% if forloop.last %}<br/>{% else %}, {% endif %}
             {% endif %}
         {% endfor %}
         </form>
-    {% endif %}
+
+    {% endif %} 
 
     <h1><form action="/update/{{zoom_id}}" method="post">
         {% csrf_token %}
@@ -40,14 +39,7 @@
         {% if what_downs %} and/or do {% else %} Do {% endif %}{{what_new_form.action}} <input type="submit" value="Add"/>.
     </form></h2>
 
-{% else %}
-        <UL>
-        {% for what in what_tops %}
-        <LI>To <a href="/read/{{what.id}}">{{ what.action }}</a></li> 
-        {% endfor %} 
-        <LI><form action="/create/" method="post">{% csrf_token %}To {{what_new_form.action}}</form></LI> 
-    </UL> 
-{% endif %} 
+
 
 {% else %}
 
