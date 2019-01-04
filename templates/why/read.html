@@ -9,23 +9,15 @@
 <!-- WHAT UP -->
 
     {% if what_now.result %}
-
-        <form action="/update/{{zoom_id}}" method="post">
-            To&nbsp;<div id="resultshow" style="display:inline;"><a href='/read/{{what_now.result.id}}'>{{ what_now.result.action }}</a>
-            (<a href="#" onClick="javascript:document.getElementById('resultedit').style.display = 'inline';document.getElementById('resultshow').style.display = 'none';">move</a>)</div><div id="resultedit" style="display:none;">{{ what_now_form.result }}<input type="submit" value="Update"/></div>
-        {% for what in what_ups reversed %}
-            {% if not forloop.first %}
-                to&nbsp;<a href="/read/{{what.id}}">{{ what.action }}</a>{% if forloop.last %}<br/>{% else %}, {% endif %}
-            {% endif %}
+        {% for what in what_ups %}
+            {% if forloop.first %}To{% else %}to{% endif %}&nbsp;<a href="/read/{{what.id}}">{{ what.action }}</a>{% if forloop.last %}<br/>{% else %}, {% endif %}
         {% endfor %}
-        </form>
-
     {% endif %} 
 
     <h1><form action="/update/{{zoom_id}}" method="post">
         {% csrf_token %}
         <div id="actionshow" style="display:inline;">{% if not what_now.result %}To{% else %}to{% endif %}&nbsp;<strong>{{ what_now.action }}</strong> (<a href="#" onClick="javascript:document.getElementById('actionedit').style.display = 'inline';document.getElementById('actionshow').style.display = 'none';">edit</a>)
-        </div><div id="actionedit" style="display:none;">do&nbsp;{{ what_now_form.action }}<input type="submit" value="Update"/></div>
+        </div><div id="actionedit" style="display:none;">do&nbsp;{{ what_now_form.action }}<BR/>to {{ what_now_form.result }} <input type="submit" value="Update"/></div>
     </form></h1>
 
     {% for whatd in what_downs %} 
