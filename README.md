@@ -19,7 +19,13 @@ The simplicity is beautiful. There is no tree view actually, just a table view. 
 
 ## Installation
 
-This is a [https://www.djangoproject.com](Django project).
+The web app is a [Django project](https://www.djangoproject.com). Projected future extensions are :
+
+* A Mobile App for Telephones
+* A Mobile App for Tablets
+* A Voice App (Google, Alexa and Siri)
+* A Wearable App
+* A Destop App
 
 ## Other Documents
 
