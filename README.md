@@ -11,7 +11,7 @@ As a list progresses, the activities can become intermediate goals with other ac
 
 Practicaly, it is presented in the following format :
 
-TO DO WHY DO HOW.
+TO WHY DO HOW.
 
 Both WHY and HOW are **non-finite verb phrases** composed of an infinitive form without the 'to' and a direct complement. 
 
