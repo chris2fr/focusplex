@@ -11,7 +11,7 @@ As a list progresses, the activities can become intermediate goals with other ac
 
 Practicaly, it is presented in the following format :
 
-TO WHY DO HOW.
+TO DO WHY DO HOW.
 
 Both WHY and HOW are TODO items. A TODO is composed of a verb without in the infinitive form without the 'to' and a verb usually with a direct complement. I just learned that this is called a "**non-finite verb phrase**."
 
