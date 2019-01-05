@@ -13,9 +13,13 @@ Practicaly, it is presented in the following format :
 
 TO DO WHY DO HOW.
 
-Both WHY and HOW are TODO items. A TODO is composed of a verb without in the infinitive form without the 'to' and a verb usually with a direct complement. I just learned that this is called a "**non-finite verb phrase**."
+Both WHY and HOW are **non-finite verb phrases** composed of an infinitive form without the 'to' and a direct complement. 
 
 The simplicity is beautiful. There is no tree view actually, just a table view. Everything is on one page. 
+
+## Contributors Wanted
+
+One ambition in this endevour is to have fun developping it and use the experience to demonstrate resellable talents in software development. All are encouraged to have a look at the [issues](https://github.com/chris2fr/why/issues) and contribute.
 
 ## Installation
 
