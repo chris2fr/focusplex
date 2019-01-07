@@ -1,6 +1,6 @@
 {% extends "why/boilerplate.html" %}
 
-{% block title %}Task?{% endblock %}
+{% block title %}TaskPhrase{% endblock %}
 
 {% block content %}
 
@@ -22,7 +22,7 @@
 
     {% for whatd in what_downs %} 
         <h2><form action="/delete/{{whatd.id}}" method="get">{% csrf_token %}do <a href="/read/{{whatd.id}}">{{whatd.action}}</a>,
-            <input type="submit" onclick="return confirm('Are you sure you wish to delete this TaskWhat?')" value="Del."/>
+            <input type="submit" onclick="return confirm('Are you sure you wish to delete this TaskPhrase?')" value="Del."/>
         </form></h2>
     {% endfor %} 
     <h2><form action="/create/" method="post">
@@ -35,8 +35,11 @@
 
 {% else %}
 
-<P>
-    The <a href="/accounts/login">login</a> has indications for account creation and demo-account user login if you do not already have an account.</P>
+<H1>To TaskPhrase Do TaskPhrase</H1>
+
+<P>The <a href="/accounts/login">login</a> has indications for account creation and demo-account user login if you do not already have an account.</P>
+
+
 
 {% endif%}
 
