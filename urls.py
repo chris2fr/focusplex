@@ -11,8 +11,8 @@ urlpatterns = [
     path('read/<int:id>', views.read, name='read'),
     path('read/', views.index, name='index'),
     path('create/', views.create, name='create'),
-    path('who/<int:who_id>',views.who, name='who'),
-    path('what/<int:what_id>',views.what, name='what'),
+    # path('who/<int:who_id>',views.who, name='who'),
+    # path('what/<int:what_id>',views.what, name='what'),
     # path('login/', views.login, name='login'),
     # path('logout/', views.logout, name='logout'),
     path('accounts/', include('django.contrib.auth.urls'))

@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('to', models.CharField(max_length=255)),
                 ('etc', models.TextField()),
-                ('do', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='why.What')),
+                ('do', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='taskphrase.What')),
             ],
         ),
         migrations.CreateModel(
@@ -34,11 +34,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='what',
             name='who',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='why.Who'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='taskphrase.Who'),
         ),
         migrations.AddField(
             model_name='what',
             name='whom',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='whom', to='why.Who'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='whom', to='taskphrase.Who'),
         ),
     ]

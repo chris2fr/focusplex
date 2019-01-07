@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class WhyConfig(AppConfig):
-    name = 'why'
+class TaskPhraseConfig(AppConfig):
+    name = 'taskphrase'

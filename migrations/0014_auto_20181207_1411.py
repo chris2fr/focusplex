@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('why', '0013_what_public'),
+        ('taskphrase', '0013_what_public'),
     ]
 
     operations = [

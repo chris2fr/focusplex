@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('why', '0001_initial'),
+        ('taskphrase', '0001_initial'),
     ]
 
     operations = [
@@ -35,12 +35,12 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='what',
             name='for_whom',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='for_whom', to='why.Who'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='for_whom', to='taskphrase.Who'),
         ),
         migrations.AddField(
             model_name='what',
             name='with_who',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='with_who', to='why.Who'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='with_who', to='taskphrase.Who'),
         ),
         migrations.AddField(
             model_name='who',
