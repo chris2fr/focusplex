@@ -14,7 +14,7 @@ class BaseModel(models.Model):
     modified_date = models.DateTimeField(auto_now=True,null=True,blank=True)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        )
+    )
         
     class Meta:
         abstract = True
