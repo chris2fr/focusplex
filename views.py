@@ -31,7 +31,8 @@ def create(request):
         if what_form.is_valid():
         # process the data in form.cleaned_data as required
             what = What.objects.create(
-                action = first_letter_downcase(what_form.cleaned_data["action"]),
+                # action = first_letter_downcase(what_form.cleaned_data["action"]),
+                action = what_form.cleaned_data["action"],
                 created_by = request.user)
             id_result = what_form.cleaned_data["result"]
             if (id_result and int(id_result) > 0):
