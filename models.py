@@ -15,6 +15,8 @@ class BaseModel(models.Model):
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
+
+    app_name = 'taskphrase'
         
     class Meta:
         abstract = True
