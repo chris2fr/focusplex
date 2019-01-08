@@ -13,7 +13,7 @@
 
     {% if what_now.result %}
         {% for what in what_ups %}
-            <h{{"h"|level}}><a href="/read/{{what.id}}">{{ what.action }}</a></h{{"h"|level}}>
+            <h{{"h"|level}}>To <a href="/read/{{what.id}}">{{ what.action }}</a></h{{"h"|level}}>
             {% levelup %}
         {% endfor %}
     {% endif %} 
@@ -21,22 +21,24 @@
 
     <h{{"h"|level}}><form action="/update/{{zoom_id}}" method="post">
         {% csrf_token %}
-        <div id="actionshow" style="display:inline;"><strong>{{ what_now.action }}</strong> (<a href="#" onClick="javascript:document.getElementById('actionedit').style.display = 'inline';document.getElementById('actionshow').style.display = 'none';">edit</a>)
-        </div><div id="actionedit" style="display:none;">do&nbsp;{{ what_now_form.action }}<BR/>to {{ what_now_form.result }} <input type="submit" value="Update"/></div>
+        <div id="actionshow" style="display:inline;"><strong>--> To <a href="#" onClick="javascript:document.getElementById('actionedit').style.display = 'inline';document.getElementById('actionshow').style.display = 'none';">{{ what_now.action }}</a></strong>
+        </div><div id="actionedit" style="display:none;"> To {{ what_now_form.result }}<BR/>--> to {{ what_now_form.action }} <input type="submit" value="Update"/></div>
     </form></h{{"h"|level}}>
 
     {% levelup %}
 
-    {% for whatd in what_downs %} 
-        <h{{"h"|level}}><form action="/delete/{{whatd.id}}" method="get">{% csrf_token %}<a href="/read/{{whatd.id}}">{{whatd.action}}</a>,
-            <input type="submit" onclick="return confirm('Are you sure you wish to delete this Task?')" value="Del."/>
-        </form></h{{"h"|level}}>
-    {% endfor %} 
     <h{{"h"|level}}><form action="/create/" method="post">
         {% csrf_token %} 
         {{what_new_form.result}}
-        {% if what_downs %} and/or do {% else %} Do {% endif %}{{what_new_form.action}} <input type="submit" value="Add"/>.
+        Do {{what_new_form.action}} <input type="submit" value="Add"/>.
     </form></h{{"h"|level}}>
+
+    {% for whatd in what_downs %} 
+        <h{{"h"|level}}><form action="/delete/{{whatd.id}}" method="get">{% csrf_token %}do <a href="/read/{{whatd.id}}">{{whatd.action}}</a>,
+            <input type="submit" onclick="return confirm('Are you sure you wish to delete this Task?')" value="Del."/>
+        </form></h{{"h"|level}}>
+    {% endfor %} 
+
 
 
 
