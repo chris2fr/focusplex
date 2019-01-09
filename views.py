@@ -57,7 +57,8 @@ def update(request, id):
             what_form.fields['result'].choices.append((what_result.id,what_result.action))
         if what_form.is_valid():
             what = What.objects.get(pk=id)
-            what.action = first_letter_downcase(what_form.cleaned_data["action"])
+            # what.action = first_letter_downcase(what_form.cleaned_data["action"])
+            what.action = what_form.cleaned_data["action"]
             what.modified_by = request.user
             if(id_result):
                 what.result = what_result # Check on this one

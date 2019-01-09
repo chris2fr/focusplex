@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="{% static "why/styles.css" %}">
-  <title>{% block title %}Task.How{% endblock %}</title>
-  <meta name="description" content="To Task.How Do Task.How">
+  <title>{% block title %}TaskWhat{% endblock %}</title>
+  <meta name="description" content="Task to do What">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="Chris Mann <chris@mann.fr>">
   <link rel='icon' href='{% static "why/favicon.png" %}' type='image/png'/ >
@@ -14,7 +14,7 @@
 <body>
 <div id='topmenu'>
 <ul>
-    <li><a href="/">Task.How</a>
+    <li><a href="/">TaskWhat</a>
     <li><a href="https://www.tohavedone.com/">Blog</a>
     <li>{% if user.is_authenticated %}
         {{ user.username }}</li>  
