@@ -30,9 +30,9 @@ So as to {{ what_now_form.result }}, <BR/>
 </form>
 <ul>
 
-    {% for whatd in what_downs %} 
-        <li><form action="/delete/{{whatd.id}}" method="get">{% csrf_token %}<a href="/read/{{whatd.id}}">{{whatd.action}}</a>
-            <button type="submit" onclick="return confirm('Are you sure you wish to delete this Task?')" value="Delete" style="color: red;">X</button>{% if forloop.revcounter0 == 1 %}; and{% elif forloop.last %}.{% else %};{% endif %}
+    {% for whatd in what_downs %}
+        <li><form action="/delete/{{whatd.id}}" method="get">{% csrf_token %}<input type="checkbox" name="delete" value="{{what.id}}" onchange="if(confirm('Are you sure you wish to delete this Task?')){this.form.submit()};"/> <a href="/read/{{whatd.id}}">{{whatd.action}}</a>
+            {% if forloop.revcounter0 == 1 %}; and{% elif forloop.last %}.{% else %};{% endif %}
         </form></li>
     {% endfor %} 
 
