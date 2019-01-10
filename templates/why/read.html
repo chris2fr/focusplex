@@ -8,39 +8,39 @@
 {% if  user.is_authenticated %}
 
 <!-- WHAT UP -->
-
-{% levelone %}
+Here are <a href="#dotasks">{{what_downs|length}} tasks</a> to <a href="/read/{{what_now.id}}#totask"><strong>{{ what_now.action }}</strong></a>
+{% if what_now.result %}
+{% for what in what_ups reversed %}
+    {% if forloop.first %}so as{% else %}in order{% endif %} to <a href="/read/{{what.id}}">{{ what.action }}</a>
+{% endfor %}
+{% endif %}.
+<HR/>
 
 <form action="/update/{{zoom_id}}" method="post">
 {% csrf_token %}
 
-To {{ what_now_form.action }} <BR/>
-So as to {{ what_now_form.result }} <BR/>
-Do <BR/>
-
+<a name="totask">To</a> {{ what_now_form.action }} <BR/>
+So as to {{ what_now_form.result }}, <BR/>
 </form>
-
+ 
+<form action="/create/" method="post">
+    {% csrf_token %} 
+    {{what_new_form.result}}
+    <a name="dotasks">Do</a>: {{what_new_form.action}}{% if not what_downs %}.{% elif what_downs.count is 1 %}; and{% else %};{% endif %}
+</form>
 <ul>
 
     {% for whatd in what_downs %} 
         <li><form action="/delete/{{whatd.id}}" method="get">{% csrf_token %}<a href="/read/{{whatd.id}}">{{whatd.action}}</a>
-            <button type="submit" onclick="return confirm('Are you sure you wish to delete this Task?')" value="Delete" style="color: red;">X</button>.
+            <button type="submit" onclick="return confirm('Are you sure you wish to delete this Task?')" value="Delete" style="color: red;">X</button>{% if forloop.revcounter0 == 1 %}; and{% elif forloop.last %}.{% else %};{% endif %}
         </form></li>
     {% endfor %} 
 
-    <form action="/create/" method="post">
-        {% csrf_token %} 
-        {{what_new_form.result}}
-        <li>{{what_new_form.action}}.</li>
-    </form>
+    
 
 </ul>
 
-    {% if what_now.result %}
-        {% for what in what_ups reversed %}
-            In order to <a href="/read/{{what.id}}">{{ what.action }}</a><br/>
-        {% endfor %}
-    {% endif %}
+
 
 
 {% else %}
