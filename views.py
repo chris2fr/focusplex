@@ -15,7 +15,7 @@ def first_letter_downcase(s):
         return
         
 def create(request):
-    """Creates a new TaskPhrase"""
+    """Creates a new TaskWhy"""
     what = ''
     id_result = ''
     if (request.POST.get("result")):
@@ -43,7 +43,7 @@ def create(request):
     return redirect('/read/{}'.format(id_result))
     
 def update(request, id):
-    """Updates an existing TaskPhrase"""
+    """Updates an existing TaskWhy"""
     # Handle POST Add first
     what = ''
     id_result = 0
@@ -69,7 +69,7 @@ def update(request, id):
     
 # @login_required
 def delete(request, id):
-    """Deletes an existing TaskPhrase"""
+    """Deletes an existing TaskWhy"""
     result__id = False
     # Handle POST Add first
     if request.user.is_authenticated:
@@ -83,7 +83,7 @@ def delete(request, id):
         return redirect('/')
     
 def read(request, id):
-    """Loads an existing TaskPhrase"""
+    """Loads an existing TaskWhy"""
     what_ups = []
     what_downs = []
     what_now = ''
@@ -180,7 +180,7 @@ def read(request, id):
         )
 
 def index(request):
-    """Shows Top-Level TaskPhrases"""
+    """Shows Top-Level TaskWhys"""
     return redirect('/read/0')
 
 def login(request):

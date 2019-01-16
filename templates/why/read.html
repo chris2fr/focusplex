@@ -1,14 +1,14 @@
 {% extends "why/boilerplate.html" %}
 {% load tasktags %}
 
-{% block title %}TaskPhrase{% endblock %}
+{% block title %}TaskWhy{% endblock %}
 
 {% block content %}
 
 {% if  user.is_authenticated %}
 
 <!-- WHAT UP -->
-Here are <a href="#dotasks">{{what_downs|length}} tasks</a> to <a href="/read/{{what_now.id}}#totask"><strong>{{ what_now.action }}</strong></a>
+Below is/are <a href="#dotasks">{{what_downs|length}} task{{what_downs|length|pluralize}}</a> to <a href="/read/{{what_now.id}}#totask"><strong>{{ what_now.action }}</strong></a>
 {% if what_now.result %}
 {% for what in what_ups reversed %}
     {% if forloop.first %}so as{% else %}in order{% endif %} to <a href="/read/{{what.id}}">{{ what.action }}</a>
@@ -44,7 +44,7 @@ So as to {{ what_now_form.result }}, <BR/>
 
 {% else %}
 
-<H1>TaskWhat</H1>
+<H1>TaskWHy</H1>
 
 <P>The <a href="/accounts/login">login</a> has indications for account creation and demo-account user login if you do not already have an account.</P>
 
