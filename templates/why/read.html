@@ -8,12 +8,12 @@
 {% if  user.is_authenticated %}
 
 <!-- WHAT UP -->
-Below is/are <a href="#dotasks">{{what_downs|length}} task{{what_downs|length|pluralize}}</a> to <a href="/read/{{what_now.id}}#totask"><strong>{{ what_now.action }}</strong></a>
+Below is/are <a href="#dotasks">{{what_downs|length}} task{{what_downs|length|pluralize}}</a> to <a href="/read/{{what_now.id}}#totask"><strong>{{ what_now.action }}</strong></a><br/>
 {% if what_now.result %}
 {% for what in what_ups reversed %}
-    {% if forloop.first %}so as{% else %}in order{% endif %} to <a href="/read/{{what.id}}">{{ what.action }}</a>
+    {% if forloop.first %}so as{% else %}in order{% endif %} to <a href="/read/{{what.id}}">{{ what.action }}</a>{% if forloop.last %}.{% else %}<br/>{% endif %}
 {% endfor %}
-{% endif %}.
+{% endif %}
 <HR/>
 
 <form action="/update/{{zoom_id}}" method="post">
