@@ -15,3 +15,8 @@ input, select, textarea, optgroup, option {
     font-style: inherit;
     font-weight: inherit;
 }
+
+#how li {
+    padding: 0;
+    list-style: none;
+}
