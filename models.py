@@ -69,6 +69,10 @@ class What(BaseModel):
     """A 'What' is also a 'Why' for other 'What's, the basis of the application.
     """
     action = models.CharField(max_length=255,)
+    order = models.CharField(max_length=255,
+                blank = True,
+                null = True,
+                default = None)
     who = models.ForeignKey(Who,
         on_delete=models.SET_NULL,
         blank=True,

@@ -4,6 +4,9 @@ from .models import Who, What
 from .forms import WhatForm
 import django.forms.widgets
 from django.contrib import auth
+from django.forms import formset_factory
+
+
 
 from django.shortcuts import redirect # For redirecting to main website on changes
 
@@ -42,8 +45,7 @@ def create(request):
         id_result = '0'
     return redirect('/read/{}'.format(id_result))
     
-def update(request, id):
-    """Updates an existing TaskWhy"""
+def generic_update(request, id):
     # Handle POST Add first
     what = ''
     id_result = 0
@@ -57,6 +59,8 @@ def update(request, id):
             what_form.fields['result'].choices.append((what_result.id,what_result.action))
         if what_form.is_valid():
             what = What.objects.get(pk=id)
+            if (request.POST.get("order")):
+                order = request.POST.get("order")
             # what.action = first_letter_downcase(what_form.cleaned_data["action"])
             what.action = what_form.cleaned_data["action"]
             what.modified_by = request.user
@@ -65,8 +69,31 @@ def update(request, id):
             else:
                 what.result = None
             what.save()
+            return what
+        else:
+            return None
+    else:
+        return None
+
+def update(request, id):
+    """Updates an existing TaskWhy"""
+    what = generic_update(request, id)
     return redirect('/read/{}'.format(id))
-    
+
+def order(request, id):
+    """Updates the order of a subtask"""
+
+    # what = generic_update(request, id)
+    what = What.objects.get(pk=id)
+    if (request.POST.get("order")):
+        order = request.POST.get("order")
+        what.order = order
+        what.save()
+    if (what.result):
+        return redirect('/read/{}'.format(what.result.id))
+    else:
+        return redirect('/read/0')
+
 # @login_required
 def delete(request, id):
     """Deletes an existing TaskWhy"""
@@ -100,29 +127,31 @@ def read(request, id):
         # filter = Q(public=True)
     
     if (not zoom_id or int(zoom_id) is 0):
-        what_now = What.objects.order_by('action').filter(filter).filter(result__id=None).first()
+        what_now = What.objects.order_by('order','action').filter(filter).filter(result__id=None).first()
         if(not what_now):
             what_now = What.objects.create(
                 action = "be {}".format(request.user),
                 created_by = request.user)
         zoom_id = what_now.id
     else:
-        what_now = What.objects.order_by('action').filter(filter).get(pk=zoom_id)
+        what_now = What.objects.order_by('order','action').filter(filter).get(pk=zoom_id)
             
-    for what in What.objects.order_by('action').filter(filter).filter(result__id=None).all():
+    for what in What.objects.order_by('order','action').filter(filter).filter(result__id=None).all():
         what_tops.append(what)
 
-    for what in What.objects.order_by('action').filter(filter).filter(result__id=zoom_id).all(): # Down
-         what_downs.append(what) 
+    what_downs_formset = formset_factory(WhatForm)
+
+    for what in What.objects.order_by('order','action').filter(filter).filter(result__id=zoom_id).all(): # Down
+        what_downs.append(what) 
     # Now up
     what = What.objects.get(pk=zoom_id)
     while(what.result): # up
-        what_ups.insert(0,What.objects.order_by('action').filter(filter).get(pk=what.result.id))
+        what_ups.insert(0,What.objects.order_by('order','action').filter(filter).get(pk=what.result.id))
         what = what.result
     # New up sides
-    what = What.objects.order_by('action').filter(filter).get(pk=zoom_id)
+    what = What.objects.order_by('order','action').filter(filter).get(pk=zoom_id)
     if (what.result):
-        for whati in What.objects.order_by('action').filter(filter).filter(result__id=what.result.id).all():
+        for whati in What.objects.order_by('order','action').filter(filter).filter(result__id=what.result.id).all():
             what_up_sides.append(whati)
     else:
         what_up_sides = what_tops
@@ -141,6 +170,7 @@ def read(request, id):
         for what in what_downs:
             # what_new_form.fields['result'].choices.append((str(what.id),what.action))
             whats.append(what)
+
         for what in what_up_sides:
             if (what.id != id and what.result):
                 what_now_form.fields['result'].choices.append((str(what.id),what.action))

@@ -11,6 +11,12 @@ class WhatForm(forms.Form):
         required=True,
         help_text="verb phrase (or task however you wish to express it)",
         )
+    order = forms.CharField(label="order",
+        max_length = 12,
+        required = False,
+        help_text = "order of presentation",
+        widget=forms.TextInput(attrs={'size':4}),
+        )
     # id = forms.HiddenField()
     
     def __init__(self, *args, **kwargs):
@@ -19,6 +25,10 @@ class WhatForm(forms.Form):
             'autofocus': 'autofocus',
             'size':32,
             'placeholder':self.fields['action'].help_text
+        })
+        self.fields['order'].widget.attrs.update({
+            'size':4,
+            'placeholder':self.fields['order'].help_text
         })
         # self.fields['action'].widget.help_text = self.fields['action'].help_text
         self.fields['result'].widget.attrs.update({
