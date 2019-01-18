@@ -6,8 +6,6 @@ import django.forms.widgets
 from django.contrib import auth
 from django.forms import formset_factory
 
-
-
 from django.shortcuts import redirect # For redirecting to main website on changes
 
 # Create your views here.
