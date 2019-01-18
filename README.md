@@ -1,11 +1,17 @@
-# Django TaskWhat Application (a.k.a. "Why")
+# Django FocusPlex Application
 
-This application takes a perspective on todo lists. Why do we do what we do? I often forget myself. The point here is remember why I do what I do. The application does this by inserting a 'why' into the todo list. In order to achieve some goal I do some activity. The goal and the thing are both representable by 'todo' items. 
+This application takes a perspective on focus. 
+
+## Contributors Wanted
+
+One ambition in this endevour is to have fun developping it and use the experience to demonstrate resellable talents in software development. All are encouraged to have a look at the [issues](https://github.com/chris2fr/focusplex/issues) and contribute.
+
+## Example of TaskWhy / Todo.How 
+
+Why do we do what we do? I often forget myself. The point here is remember why I do what I do. The application does this by inserting a 'why' into the todo list. In order to achieve some goal I do some activity. The goal and the thing are both representable by 'todo' items. 
 
 You can use this at :
-[https://www.taskwhat.com](https://www.taskwhat.com)
-
-## Use
+[https://www.taskwhy.com](https://www.taskwhy.com)
 
 As a list progresses, the activities can become intermediate goals with other activities attached to them. Therefor, and this is important, the new intermediate is strictly the same as a previous activity. The todo is both an intermediate goal and an intermediate activity. The trunck todos are goals, the branch todos are intermediate activities at their base, the branch todos are intermediate goals at their bifurcations, and the leaf todos are activities.
 
@@ -16,10 +22,6 @@ TO WHY DO HOW.
 Both WHY and HOW are **non-finite verb phrases** composed of an infinitive form without the 'to' and a direct complement. 
 
 The simplicity is beautiful. There is no tree view actually, just a table view. Everything is on one page. 
-
-## Contributors Wanted
-
-One ambition in this endevour is to have fun developping it and use the experience to demonstrate resellable talents in software development. All are encouraged to have a look at the [issues](https://github.com/chris2fr/why/issues) and contribute.
 
 ## Installation
 
