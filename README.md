@@ -1,4 +1,4 @@
-# Django TaskWhat Application (a.k.a. "Why")
+# Django FocusPlex Application
 
 This application takes a perspective on todo lists. Why do we do what we do? I often forget myself. The point here is remember why I do what I do. The application does this by inserting a 'why' into the todo list. In order to achieve some goal I do some activity. The goal and the thing are both representable by 'todo' items. 
 
